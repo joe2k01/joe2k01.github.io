@@ -3,6 +3,11 @@ body {
 }
 
 h1 {
+  position: absolute;
+  top: auto;
+  bottom: 300px;
+  left: 0;
+  right: 0;
   font-family: 'Courgette', cursive;
   color: white;
   font-size: 20px;
@@ -17,8 +22,14 @@ h1 {
 }
 
 p {
-  margin:0 auto;
-  display:table;
+  position: absolute;
+  top: 50px;
+  bottom: 0;
+  left: 80px;
+  right: 0;
+  margin: auto;
+  width: 37.5%;
+  height: 75%;
 }
 
 .avatar {
