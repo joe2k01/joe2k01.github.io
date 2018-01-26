@@ -20,16 +20,17 @@ p{
   text-align: center;
 }
 
-.avatar {
+img {
   border-radius: 50%;
+  border: 3px solid orange;
+}
+
+.avatar {
   max-width: 15%;
   max-height: 15%;
-  width: auto;
-  height: auto;
 }
 
 .others {
-  border-radius: 50%;
   max-width: 8%;
   max-height: 8%;
 }
