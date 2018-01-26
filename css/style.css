@@ -22,12 +22,32 @@ p{
 
 .avatar {
   border-radius: 50%;
-  width: 15%;
-  height: 15%;
+  max-width: 15%;
+  max-height: 15%;
+  width: auto;
+  height: auto;
 }
 
 .others {
   border-radius: 50%;
-  width: 8%;
-  height: 8%;
+  max-width: 8%;
+  max-height: 8%;
+}
+
+@media all and (min-width:0px) and (max-width: 1024px) {
+  .avatar {
+    border-radius: 50%;
+    max-width: 29%;
+    max-height: 29%;
+    width: auto;
+    height: auto;
+  }
+
+  .others {
+    border-radius: 50%;
+    max-width: 22%;
+    max-height: 22%;
+    width: auto;
+    height: auto;
+  }
 }
