@@ -51,4 +51,21 @@ img {
     width: auto;
     height: auto;
   }
+
+@media all and (min-width:840px) and (max-width: 1020px) {
+  .avatar {
+    border-radius: 50%;
+    max-width: 29%;
+    max-height: 29%;
+    width: auto;
+    height: auto;
+  }
+
+  .others {
+    border-radius: 50%;
+    max-width: 13%;
+    max-height: 13%;
+    width: auto;
+    height: auto;
+  }
 }
