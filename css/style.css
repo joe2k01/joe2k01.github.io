@@ -16,8 +16,20 @@ h1 {
   text-align: center
 }
 
+.right-bottom {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
 p{
   text-align: center;
+}
+
+.button {
+  background-color: #232323;
+  border: none;
+  color: orange;
 }
 
 img {
