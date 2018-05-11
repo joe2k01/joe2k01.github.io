@@ -22,6 +22,12 @@ h1 {
   right: 0;
 }
 
+.left-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
+
 p{
   text-align: center;
 }
