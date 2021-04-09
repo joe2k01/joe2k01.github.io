@@ -1,0 +1,1 @@
+I am a 19 y.o. Electronic and Computer Engineering international student, from Italy, at the University of York (UK). I am passionate about anything that works with 1s and 0s. I am also a motorsports fan.
