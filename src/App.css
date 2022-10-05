@@ -1,0 +1,3 @@
+.gradientText {
+  @apply bg-gradient-to-r from-orange-600 to-violet-600 bg-clip-text text-transparent;
+}
