@@ -8,7 +8,7 @@ const SectionContainer: React.FC<SectionContainerProps> = ({
   children,
 }) => {
   return (
-    <div id={id} className="mt-10 md:mt-0 flex-col w-full">
+    <div id={id} className="mt-10 flex-col w-full">
       {children}
     </div>
   );

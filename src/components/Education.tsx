@@ -37,7 +37,7 @@ const Education: React.FC = () => {
               Esame di Stato
             </a>{" "}
             with a final grade of 96/100. My strongest subjects were Mathematics
-            (9/10), Physics (9/10) and English litterature and language (10/10)
+            (9/10), Physics (9/10) and English litterature and language (10/10).
           </p>
         </div>
       </div>
