@@ -1,4 +1,5 @@
 import { About } from "./About";
+import { Career } from "./Career";
 import { Education } from "./Education";
 import { Volunteering } from "./Volunteering";
 
@@ -8,6 +9,7 @@ const Content: React.FC = () => {
       <About />
       <Education />
       <Volunteering />
+      <Career />
     </div>
   );
 };

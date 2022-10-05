@@ -7,7 +7,7 @@ const Education: React.FC = () => {
         <span className="gradientText">Education</span>
       </h3>
       <div className="mt-4 ml-4 border-l-2 border-orange-400">
-        <div className="ml-10 relative">
+        <div className="ml-10 relative lg:w-1/2">
           <div className="absolute w-5 h-5 top-0 bg-orange-500 shadow-md shadow-orange-500 rounded-full -ml-[41px] -translate-x-1/2" />
           <p className="text-orange-500">University 2020-2024</p>
           <p className="text-orange-400">
@@ -20,7 +20,7 @@ const Education: React.FC = () => {
             91% overall. I concluded my second year with 84% overall.
           </p>
         </div>
-        <div className="ml-10 mt-4 relative">
+        <div className="ml-10 mt-4 relative lg:w-1/2">
           <div className="absolute w-5 h-5 top-0 bg-orange-500 shadow-md shadow-orange-500 rounded-full -ml-[41px] -translate-x-1/2" />
           <p className="text-orange-500">
             High School / A Levels Equivalent 2015-2020
