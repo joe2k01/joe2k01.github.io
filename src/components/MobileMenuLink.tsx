@@ -8,12 +8,12 @@ const MobileMenuLink: React.FC<MobileMenuLinkProps> = ({ link, closeMenu }) => {
     <>
       <a
         href={`#${link}`}
-        className="text-white dark:text-black uppercase w-full text-center text-3xl my-10"
+        className="text-gray-200 dark:text-gray-900 uppercase w-full text-center text-3xl my-10"
         onClick={() => closeMenu()}
       >
         {link}
       </a>
-      <hr className="border-2 border-white dark:border-black" />
+      <hr className="border-2 border-gray-200 dark:border-gray-900" />
     </>
   );
 };
