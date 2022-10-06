@@ -44,7 +44,7 @@ const Career: React.FC = () => {
             Working at TSYS, I was given the freedom to design the DocOps flow
             used by the Knaresborough branch. My work heavily relied on Python
             and Docker during the prototyping stage, and then on AWS and GCP
-            during the deployment phase.
+            during the deployment phase ☁️.
           </p>
         </div>
       </div>

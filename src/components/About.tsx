@@ -20,7 +20,7 @@ const About: React.FC = () => {
           className={`rounded-full w-56 h-56 object-cover absolute z-30 ${center}`}
         />
       </div>
-      <p className="text-center text-2xl my-4 font-bold gradientText">
+      <p className="text-center text-2xl my-4 font-bold gradientText w-max mx-auto">
         Giuseppe Barillari
       </p>
       <p className="text-center">
