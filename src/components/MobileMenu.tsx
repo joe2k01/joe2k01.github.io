@@ -23,7 +23,7 @@ const MobileMenu: React.FC = () => {
       </button>
       <div
         className={`fixed left-0 top-0 w-full h-full flex flex-col justify-center transition-transform ease-in-out duration-300 bg-orange-500 z-40 ${
-          showMenu ? "translate-x-0" : "-translate-x-full"
+          showMenu ? "translate-x-0" : "translate-x-[200vw]"
         }`}
       >
         <MobileMenuLink link="about" closeMenu={closeMenu} />
