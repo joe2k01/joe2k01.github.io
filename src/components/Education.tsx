@@ -32,7 +32,7 @@ const Education: React.FC = () => {
             I graduated the{" "}
             <a
               href="https://en.wikipedia.org/wiki/Liceo_scientifico"
-              className="text-orange-400 hover:text-orange-500 visited:text-violet-600"
+              className="colourLink"
             >
               Esame di Stato
             </a>{" "}

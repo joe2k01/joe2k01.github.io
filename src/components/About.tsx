@@ -31,7 +31,7 @@ const About: React.FC = () => {
         I'm a 21 y.o. 3rd year{" "}
         <a
           href="https://www.york.ac.uk/study/undergraduate/courses/meng-electronic-computer-engineering/"
-          className="text-orange-400 hover:text-orange-500 visited:text-violet-600"
+          className="colourLink"
         >
           Electronic and Computer Engineering (MEng)
         </a>{" "}

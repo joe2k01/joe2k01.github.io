@@ -12,7 +12,7 @@ const Contact: React.FC = () => {
           <span>
             <a
               href="mailto:gb1149@york.ac.uk"
-              className="text-orange-400 hover:text-orange-500 visited:text-violet-600"
+              className="colourLink"
             >
               gb1149@york.ac.uk
             </a>

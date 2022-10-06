@@ -13,7 +13,7 @@ const MobileMenuLink: React.FC<MobileMenuLinkProps> = ({ link, closeMenu }) => {
       >
         {link}
       </a>
-      <hr className="border-2 border-black" />
+      <hr className="border-2 border-white dark:border-black" />
     </>
   );
 };

@@ -1,3 +1,7 @@
 .gradientText {
   @apply bg-gradient-to-r from-orange-600 to-violet-600 bg-clip-text text-transparent;
 }
+
+.colourLink {
+  @apply text-orange-400 hover:text-orange-500 visited:text-violet-500 visited:hover:text-violet-600;
+}

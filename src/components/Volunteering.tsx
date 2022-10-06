@@ -11,19 +11,13 @@ const Volunteering: React.FC = () => {
           During my time at university I've engaged in various volunteering and
           society related activities. I currently am{" "}
           <span>
-            <a
-              href="http://www.shocksoc.org/"
-              className="text-orange-400 hover:text-orange-500 visited:text-violet-600"
-            >
+            <a href="http://www.shocksoc.org/" className="colourLink">
               ShockSoc
             </a>
           </span>
           's secretary as well as{" "}
           <span>
-            <a
-              href="https://nouse.co.uk/"
-              className="text-orange-400 hover:text-orange-500 visited:text-violet-600"
-            >
+            <a href="https://nouse.co.uk/" className="colourLink">
               Nouse
             </a>
           </span>
@@ -33,11 +27,12 @@ const Volunteering: React.FC = () => {
           <span>
             <a
               href="https://engx.theiet.org/local-networks/yh2"
-              className="text-orange-400 hover:text-orange-500 visited:text-violet-600"
+              className="colourLink"
             >
               North Yorkshire Group of IET volunteers
             </a>
-          </span>.
+          </span>
+          .
         </p>
       </div>
     </SectionContainer>
