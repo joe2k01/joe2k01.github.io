@@ -3,10 +3,10 @@ import { SectionContainer } from "./SectionContainer";
 const Volunteering: React.FC = () => {
   return (
     <SectionContainer id="volunteering">
-      <h3 className="text-3xl font-bold w-min">
+      <h3 className="text-3xl font-bold">
         <span className="gradientText">Volunteering</span>
       </h3>
-      <div>
+      <div className="mt-2">
         <p>
           During my time at university I've engaged in various volunteering and
           society related activities. I currently am{" "}

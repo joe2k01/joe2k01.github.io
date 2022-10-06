@@ -30,6 +30,7 @@ const MobileMenu: React.FC = () => {
         <MobileMenuLink link="education" closeMenu={closeMenu} />
         <MobileMenuLink link="volunteering" closeMenu={closeMenu} />
         <MobileMenuLink link="career" closeMenu={closeMenu} />
+        <MobileMenuLink link="contact me" closeMenu={closeMenu} />
       </div>
     </>
   );

@@ -7,6 +7,7 @@ const SideBar: React.FC = () => {
       <SideBarLink link="education" />
       <SideBarLink link="volunteering" />
       <SideBarLink link="career" />
+      <SideBarLink link="contact me" />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { SectionContainer } from "./SectionContainer";
 const Education: React.FC = () => {
   return (
     <SectionContainer id="education">
-      <h3 className="text-3xl font-bold w-min">
+      <h3 className="text-3xl font-bold">
         <span className="gradientText">Education</span>
       </h3>
       <div className="mt-4 ml-4 border-l-2 border-orange-400">
