@@ -6,10 +6,10 @@ const Volunteering: React.FC = () => {
       <h3 className="text-3xl font-bold">
         <span className="gradientText">Volunteering</span>
       </h3>
-      <div className="mt-2">
+      <div className="mt-2 text-justify">
         <p>
           During my time at university I've engaged in various volunteering and
-          society related activities. I currently am{" "}
+          society related activities. I am currently{" "}
           <span>
             <a href="http://www.shocksoc.org/" className="colourLink">
               ShockSoc
@@ -23,7 +23,7 @@ const Volunteering: React.FC = () => {
           </span>
           's Deputy Technical Director. I've also covered the role of Student
           Representative for the second year cohort of Electronic Engineers.
-          Furthermore, I am a member of the{" "}
+          Outside of University, I am a member of the{" "}
           <span>
             <a
               href="https://engx.theiet.org/local-networks/yh2"

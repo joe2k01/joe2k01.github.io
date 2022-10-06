@@ -14,7 +14,7 @@ const Education: React.FC = () => {
             The University of York (York, UK) - MEng Electronic and Computer
             Engineering
           </p>
-          <p>
+          <p className="text-justify">
             I am currently in my 3rd year at The University Of York studying
             Electronic and Computer Engineering. In my first year I achievied
             91% overall. I concluded my second year with 84% overall.
@@ -28,8 +28,8 @@ const Education: React.FC = () => {
           <p className="text-orange-400">
             Liceo Scientifico Antonio Pacinotti (Cagliari, Sardinia, Italy)
           </p>
-          <p>
-            I graduated the{" "}
+          <p className="text-justify">
+            I passed the{" "}
             <a
               href="https://en.wikipedia.org/wiki/Liceo_scientifico"
               className="colourLink"
@@ -37,7 +37,7 @@ const Education: React.FC = () => {
               Esame di Stato
             </a>{" "}
             with a final grade of 96/100. My strongest subjects were Mathematics
-            (9/10), Physics (9/10) and English litterature and language (10/10).
+            (9/10), Physics (9/10) and English literature and language (10/10).
           </p>
         </div>
       </div>

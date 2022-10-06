@@ -6,7 +6,7 @@ const Contact: React.FC = () => {
       <h3 className="text-3xl font-bold">
         <span className="gradientText">Get in Touch</span>
       </h3>
-      <div className="mt-2">
+      <div className="mt-2 text-justify">
         <p>
           If you'd like to get in touch with me, please email me at{" "}
           <span>

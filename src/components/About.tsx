@@ -23,21 +23,23 @@ const About: React.FC = () => {
       <p className="text-center text-2xl my-4 font-bold gradientText w-max mx-auto">
         Giuseppe Barillari
       </p>
-      <p className="text-center">
-        Hi there!<span>👋🏽</span>
-        <br />
-      </p>
-      <p className="mx-4">
-        I'm a 21 y.o. 3rd year{" "}
-        <a
-          href="https://www.york.ac.uk/study/undergraduate/courses/meng-electronic-computer-engineering/"
-          className="colourLink"
-        >
-          Electronic and Computer Engineering (MEng)
-        </a>{" "}
-        student at The University Of York, UK. My interests are primarily
-        focused around:
-      </p>
+      <div className="mx-4 text-justify">
+        <p className="text-center">
+          Hi there!<span>👋🏽</span>
+          <br />
+        </p>
+        <p className="mx-4">
+          I'm a 21 y.o. 3rd year{" "}
+          <a
+            href="https://www.york.ac.uk/study/undergraduate/courses/meng-electronic-computer-engineering/"
+            className="colourLink"
+          >
+            Electronic and Computer Engineering (MEng)
+          </a>{" "}
+          student at The University Of York, UK. My interests are primarily
+          focused around:
+        </p>
+      </div>
       <ul className="list-none p-4 mx-auto table">
         <li className="before:content-['⚡️']">
           <span className="ml-2">Digital and analogue electronics</span>

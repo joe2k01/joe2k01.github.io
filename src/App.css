@@ -3,5 +3,5 @@
 }
 
 .colourLink {
-  @apply text-orange-400 hover:text-orange-500 visited:text-violet-500 visited:hover:text-violet-600;
+  @apply underline text-orange-400 hover:text-orange-500 visited:text-violet-500 visited:hover:text-violet-600;
 }
