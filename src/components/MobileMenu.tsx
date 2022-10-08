@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { IconContext } from "react-icons";
-import { MdClose, MdMenu } from "react-icons/md";
+import { MdClose, MdMenu } from "react-icons/md/index";
 import MobileMenuLink from "./MobileMenuLink";
 
 const expandedClassName =
@@ -20,16 +19,11 @@ const MobileMenu: React.FC = () => {
         } transition-colors ease-in-out duration-300`}
         onClick={() => setShowMenu((m) => !m)}
       >
-        <IconContext.Provider
-          value={{
-            className: showMenu
-              ? "fill-gray-200 dark:fill-gray-900"
-              : "fill-orange-400",
-            size: "40",
-          }}
-        >
-          {showMenu ? <MdClose /> : <MdMenu />}
-        </IconContext.Provider>
+        {showMenu ? (
+          <MdClose className="fill-gray-200 dark:fill-gray-900" size={40} />
+        ) : (
+          <MdMenu className="fill-orange-400" size={40} />
+        )}
       </button>
       <div
         className={`fixed left-0 top-0 w-full h-full flex flex-col justify-center transition-transform ease-in-out duration-300 bg-orange-500 z-40 ${
