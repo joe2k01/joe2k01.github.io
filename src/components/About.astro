@@ -1,0 +1,62 @@
+---
+import SectionContainer from "./SectionContainer.astro";
+
+const center = "top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2";
+---
+
+<SectionContainer id="about">
+  <div class="relative w-72 h-72 mx-auto">
+    <div
+      class={`absolute w-60 h-60 bg-orange-400/90 rounded-full z-20 ${center} animate-pulse`}
+    >
+    </div>
+    <div
+      class={`absolute w-64 h-64 bg-orange-400/80 rounded-full z-20 ${center} animate-pulse`}
+    >
+    </div>
+    <div
+      class={`absolute w-[17rem] h-[17rem] bg-orange-400/70 rounded-full z-20 ${center} animate-pulse`}
+    >
+    </div>
+    <img
+      src="/assets/giuseppe.jpg"
+      class={`rounded-full w-56 h-56 object-cover absolute z-30 ${center}`}
+    />
+  </div>
+  <p class="text-center text-2xl my-4 font-bold gradientText w-max mx-auto">
+    Giuseppe Barillari
+  </p>
+  <div class="mx-4 text-justify">
+    <p class="text-center">
+      Hi there!<span>👋🏽</span>
+      <br />
+    </p>
+    <p class="mx-4">
+      I'm a 21 y.o. 3rd year{" "}
+      <a
+        href="https://www.york.ac.uk/study/undergraduate/courses/meng-electronic-computer-engineering/"
+        class="colourLink"
+      >
+        Electronic and Computer Engineering (MEng)
+      </a>{" "}
+      student at The University Of York, UK. My interests are primarily focused around:
+    </p>
+  </div>
+  <ul class="list-none p-4 mx-auto table">
+    <li class="before:content-['⚡️']">
+      <span class="ml-2">Digital and analogue electronics</span>
+    </li>
+    <li class="before:content-['👨🏽‍💻']">
+      <span class="ml-2">Web development</span>
+    </li>
+    <li class="before:content-['📲']">
+      <span class="ml-2">Embedded programming</span>
+    </li>
+    <li class="before:content-['🏎']">
+      <span class="ml-2">Motorsports</span>
+    </li>
+    <li class="before:content-['🏋🏽‍♂️']">
+      <span class="ml-2">Keeping active</span>
+    </li>
+  </ul>
+</SectionContainer>

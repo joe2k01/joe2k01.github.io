@@ -1,0 +1,41 @@
+---
+import Layout from "../layouts/Layout.astro";
+import About from "../components/About.astro";
+import Education from "../components/Education.astro";
+import Volunteering from "../components/Volunteering.astro";
+import Career from "../components/Career.astro";
+import Contact from "../components/Contact.astro";
+
+const timelineThemes = {
+  orange: {
+    headingColour: "text-orange-500",
+    subHeadingColour: "text-orange-400",
+    trackerColours: "bg-orange-500 shadow-orange-500",
+    timelineBorder: "border-orange-400",
+  },
+  violet: {
+    headingColour: "text-violet-500",
+    subHeadingColour: "text-violet-400",
+    trackerColours: "bg-violet-500 shadow-violet-500",
+    timelineBorder: "border-violet-400",
+  },
+};
+---
+
+<Layout title="Giuseppe Barillari">
+  <About />
+  <Education theme={timelineThemes.orange} />
+  <Volunteering />
+  <Career theme={timelineThemes.violet} />
+  <Contact />
+</Layout>
+
+<style is:global>
+  .gradientText {
+    @apply bg-gradient-to-r from-orange-600 to-violet-600 bg-clip-text text-transparent;
+  }
+
+  .colourLink {
+    @apply underline text-orange-400 hover:text-orange-500 visited:text-violet-500 visited:hover:text-violet-600;
+  }
+</style>

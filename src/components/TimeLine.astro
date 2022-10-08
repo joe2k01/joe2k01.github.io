@@ -1,0 +1,11 @@
+---
+export interface Props {
+  timelineBorder: string;
+}
+
+const { timelineBorder } = Astro.props;
+---
+
+<div class={`mt-4 ml-4 border-l-2 ${timelineBorder}`}>
+  <slot />
+</div>

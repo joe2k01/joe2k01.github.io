@@ -1,0 +1,11 @@
+---
+export interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div id={id} class="mt-10 flex-col w-full">
+  <slot />
+</div>

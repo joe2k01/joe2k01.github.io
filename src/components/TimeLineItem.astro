@@ -1,0 +1,28 @@
+---
+export interface Props {
+  theme: {
+    headingColour: string;
+    subHeadingColour: string;
+    trackerColours: string;
+    timelineBorder: string;
+  };
+  heading: string;
+  subHeading: string;
+}
+
+const { theme, heading, subHeading } = Astro.props;
+---
+
+<div class="ml-10 mt-4 relative lg:w-1/2">
+  <div
+    class={`absolute w-6 h-6 -top-[0.125rem] rounded-full -ml-[41px] -translate-x-1/2 animate-pulse ${theme.trackerColours}`}
+  >
+  </div>
+  <div
+    class={`absolute w-5 h-5 top-0 rounded-full -ml-[41px] -translate-x-1/2 ${theme.trackerColours}`}
+  >
+  </div>
+  <p class={theme.headingColour}>{heading}</p>
+  <p class={theme.subHeadingColour}>{subHeading}</p>
+  <slot />
+</div>
