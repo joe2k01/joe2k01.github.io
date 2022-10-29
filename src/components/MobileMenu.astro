@@ -7,7 +7,7 @@ import MobileMenuLink from "./MobileMenuLink.astro";
   <button
     id="openMenuBtn"
     aria-label="Open navigation menu"
-    class="md:hidden fixed top-0 right-0 m-4 z-40 p-4 rounded-xl shadow-md border-2 bg-gray-200 dark:bg-gray-900 border-orange-400 shadow-orange-500"
+    class="md:hidden fixed top-0 right-0 m-4 z-40 p-4 rounded-xl shadow-md border-2 bg-gray-900 border-orange-400 shadow-orange-500"
   >
     <Icon name="ic:round-menu" class="text-orange-400 w-8 h-8" />
   </button>
@@ -18,12 +18,9 @@ import MobileMenuLink from "./MobileMenuLink.astro";
     <button
       id="closeMenuBtn"
       aria-label="Close navigation menu"
-      class="md:hidden fixed top-0 right-0 m-4 p-4 rounded-xl shadow-md border-2 bg-orange-400 border-gray-200 dark:border-gray-900 shadow-gray-300 dark:shadow-black"
+      class="md:hidden fixed top-0 right-0 m-4 p-4 rounded-xl shadow-md border-2 bg-orange-400 border-gray-900 shadow-black"
     >
-      <Icon
-        name="ic:round-menu"
-        class="text-gray-200 dark:text-gray-900 w-8 h-8"
-      />
+      <Icon name="ic:round-menu" class="text-gray-900 w-8 h-8" />
     </button>
     <MobileMenuLink link="about" />
     <MobileMenuLink link="education" />
