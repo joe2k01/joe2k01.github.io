@@ -1,0 +1,56 @@
+---
+import Divider from "../components/Divider.astro";
+import Scribble from "../components/Scribble.astro";
+---
+
+<div
+  class="grid md:grid-cols-[40%_20%_40%] md:grid-rows-1 mt-80 h-screen relative px-10"
+  id="about"
+>
+  <div
+    class="w-full bg-[url('/body_blob.svg')] bg-contain bg-no-repeat bg-center h-full flex"
+  >
+    <img class="w-1/2 m-auto object-cover" src="/giuseppe.webp" />
+  </div>
+  <Divider />
+  <div class="flex flex-col pt-10 font-roboto text-2xl text-white justify-center">
+    <div class="relative w-full">
+      <Scribble />
+      <h1
+        class="text-malibu-500 text-center text-6xl font-playfair font-bold relative"
+      >
+        More about me
+      </h1>
+    </div>
+    <p class="text-center mt-10">
+      Hi there <span class="font-emoji">&#128075;&#127996;</span>
+    </p>
+    <p class="text-justify mt-10">
+      I&rsquo;m a full stack software engineer with a background in electronic
+      engineering. I&rsquo;m currently based in York, UK, but very happy to help
+      you wherever you are! Have a look around and let me know if you need
+      anything
+    </p>
+  </div>
+</div>
+<script>
+  const about = document.getElementById("about") as HTMLDivElement;
+  const scribble = document.getElementById("scribble") as HTMLElement;
+  const divider = document.getElementById("divider") as HTMLElement;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          scribble.classList.add("full-svg");
+          divider.classList.add("full-svg");
+        }
+      });
+    },
+    {
+      rootMargin: `0px 0px -100% 0px`,
+    }
+  );
+
+  observer.observe(about);
+</script>

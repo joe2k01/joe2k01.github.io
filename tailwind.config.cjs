@@ -70,6 +70,11 @@ module.exports = {
           950: "#06364b",
         },
       },
+      fontFamily: {
+        playfair: ["'Playfair Display'", "serif"],
+        roboto: ["'Roboto'", "sans-serif"],
+        emoji: ["'Noto Color Emoji'", "sans-serif"],
+      },
     },
   },
   plugins: [],
