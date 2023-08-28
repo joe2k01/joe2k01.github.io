@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  content: string;
+  imageNumber: number;
+}
+
+const { title, content, imageNumber } = Astro.props;
+---
+
+<project-entry
+  class="w-2/3 h-screen flex flex-col project"
+  data-image={imageNumber}
+>
+  <div class="my-auto">
+    <h2 class="text-7xl">{title}</h2>
+    <p class="text-justify mt-4">{content}</p>
+  </div>
+</project-entry>
+
+<script>
+  class ProjectEntry extends HTMLElement {
+    observer: IntersectionObserver | undefined;
+    imageNumber: string;
+    image: HTMLImageElement;
+    imageWrapper: HTMLDivElement;
+    constructor() {
+      super();
+
+      this.imageNumber = this.dataset.image ?? "0";
+
+      this.imageWrapper = document.getElementById(
+        `project-image-wrapper-${this.imageNumber}`
+      ) as HTMLDivElement;
+
+      this.image = document.getElementById(
+        `project-image-${this.imageNumber}`
+      ) as HTMLImageElement;
+
+      this.setUpObserver();
+
+      window.addEventListener("resize", () => {
+        if (this.observer) this.observer.disconnect();
+        this.setUpObserver();
+      });
+    }
+
+    private setUpObserver() {
+      this.observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              this.imageWrapper.classList.remove("opacity-100");
+              this.image.classList.remove("scale-100");
+              this.imageWrapper.classList.add("opacity-0");
+              this.image.classList.add("scale-125");
+            } else {
+              this.image.classList.remove("scale-125");
+              this.imageWrapper.classList.remove("opacity-0");
+              this.imageWrapper.classList.add("opacity-100");
+              this.image.classList.add("scale-100");
+            }
+          });
+        },
+        {
+          rootMargin: `-50% 0px -50% 0px`,
+        }
+      );
+
+      this.observer.observe(this);
+    }
+  }
+
+  customElements.define("project-entry", ProjectEntry);
+</script>

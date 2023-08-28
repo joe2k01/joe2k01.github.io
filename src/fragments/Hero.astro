@@ -1,0 +1,14 @@
+---
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="w-full min-h-screen min-h-[100dvh] relative" id={id}>
+  <div
+    class="absolute w-10 h-10 bg-red-500 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+  >
+  </div>
+</div>
