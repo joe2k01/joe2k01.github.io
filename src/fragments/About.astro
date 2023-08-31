@@ -1,54 +1,120 @@
----
-import Divider from "../components/Divider.astro";
-import Scribble from "../components/Scribble.astro";
----
+<div class="py-20 relative flex flex-col min-h-screen" id="about">
+  <img
+    class="w-full h-full object-cover -z-10 absolute top-0 left-0 opacity-0 transition-opacity duration-200 ease-in"
+    src="/about_bg.svg"
+    id="aboutBackground"
+  />
 
-<div
-  class="grid md:grid-cols-[40%_20%_40%] md:grid-rows-1 mt-80 h-screen relative px-10"
-  id="about"
->
-  <div
-    class="w-full bg-[url('/body_blob.svg')] bg-contain bg-no-repeat bg-center h-full flex"
+  <h1
+    class="font-playfair font-extrabold text-violet-200 text-6xl mt-5 ml-10 overflow-clip"
   >
-    <img class="w-1/2 m-auto object-cover" src="/giuseppe.webp" />
-  </div>
-  <Divider />
-  <div class="flex flex-col pt-10 font-roboto text-2xl text-white justify-center">
-    <div class="relative w-full">
-      <Scribble />
-      <h1
-        class="text-malibu-500 text-center text-6xl font-playfair font-bold relative"
-      >
-        More about me
-      </h1>
-    </div>
-    <p class="text-center mt-10">
-      Hi there <span class="font-emoji">&#128075;&#127996;</span>
+    <p
+      class="text-hidden transition-transform duration-300 ease-in"
+      id="aboutTitle"
+    >
+      More about me
     </p>
-    <p class="text-justify mt-10">
-      I&rsquo;m a full stack software engineer with a background in electronic
-      engineering. I&rsquo;m currently based in York, UK, but very happy to help
-      you wherever you are! Have a look around and let me know if you need
-      anything
+  </h1>
+  <div
+    class="m-auto p-10 font-roboto font-semibold text-victoria-50 text-center text-border opacity-0 transition-opacity duration-300 ease delay-200"
+    id="aboutContent"
+  >
+    <p class="text-6xl relative">
+      Hi I&rsquo;m <span class="font-playfair">Giuseppe</span>
+      <span class="font-emoji">&#128075;&#127996;</span>.
+      <span
+        class="absolute bottom-0 left-3/4 p-1 w-1/6 aspect-square rounded-full bg-conic scale-0 transition-transform duration-300 ease delay-500"
+        id="portraitDesktop"
+      >
+        <img class="w-full rounded-full rotate-12" src="/giuseppe.webp" />
+      </span>
+    </p>
+    <p class="text-5xl mt-10">
+      I am a 22 years old software engineer with a background in electronic
+      engineering. I like making pretty websites.
+    </p><br />
+    <p class="text-5xl my-10">
+      I&rsquo;m also about to obtain an MEng in Electronic and Computer
+      Engineering from the university of York.
     </p>
   </div>
 </div>
+
+<style>
+  @property --conic-angle {
+    syntax: "<angle>";
+    inherits: false;
+    initial-value: 45deg;
+  }
+  .text-border {
+    /* -webkit-text-stroke: 1px theme(colors.violet.950); */
+    text-shadow: -1px 0 theme(colors.violet.950), 0 1px theme(colors.violet.950),
+      1px 0 theme(colors.violet.950), 0 -1px theme(colors.violet.950);
+  }
+
+  .bg-conic {
+    --conic-angle: 45deg;
+    background-image: conic-gradient(
+      from var(--conic-angle),
+      theme(colors.violet.500),
+      theme(colors.indigo.500),
+      theme(colors.purple.500)
+    );
+
+    animation: conic-rotate 3s ease-in-out infinite;
+  }
+
+  @keyframes conic-rotate {
+    0% {
+      --conic-angle: 45deg;
+    }
+    90% {
+      --conic-angle: 405deg;
+    }
+    100% {
+      --conic-angle: 405deg;
+    }
+  }
+
+  .text-hidden {
+    transform: translateY(-100%) rotateZ(-45deg);
+    transform-origin: bottom left;
+  }
+
+  .text-present {
+    transform: translateY(0) rotateZ(0);
+  }
+</style>
+
 <script>
   const about = document.getElementById("about") as HTMLDivElement;
-  const scribble = document.getElementById("scribble") as HTMLElement;
-  const divider = document.getElementById("divider") as HTMLElement;
+  const background = document.getElementById(
+    "aboutBackground"
+  ) as HTMLImageElement;
+  const portraitDesktop = document.getElementById(
+    "portraitDesktop"
+  ) as HTMLSpanElement;
+  const title = document.getElementById("aboutTitle") as HTMLParagraphElement;
+  const content = document.getElementById("aboutContent") as HTMLDivElement;
 
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          scribble.classList.add("full-svg");
-          divider.classList.add("full-svg");
+          background.classList.remove("opacity-0");
+          portraitDesktop.classList.remove("scale-0");
+          title.classList.add("text-present");
+          content.classList.remove("opacity-0");
+        } else {
+          background.classList.add("opacity-0");
+          portraitDesktop.classList.add("scale-0");
+          title.classList.remove("text-present");
+          content.classList.add("opacity-0");
         }
       });
     },
     {
-      rootMargin: `0px 0px -100% 0px`,
+      rootMargin: "0px 0px -50% 0px",
     }
   );
 
