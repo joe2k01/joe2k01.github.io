@@ -1,11 +1,13 @@
 ---
+import Badge from "./Badge.astro";
 interface Props {
   title: string;
   content: string;
   imageNumber: number;
+  badges: string[];
 }
 
-const { title, content, imageNumber } = Astro.props;
+const { title, content, imageNumber, badges } = Astro.props;
 ---
 
 <project-entry
@@ -13,8 +15,15 @@ const { title, content, imageNumber } = Astro.props;
   data-image={imageNumber}
 >
   <div class="my-auto">
-    <h2 class="text-7xl">{title}</h2>
-    <p class="text-justify mt-4">{content}</p>
+    <h2 class="text-5xl font-playfair font-bold text-victoria-200">
+      {title}
+    </h2>
+    <div class="flex flex-row flex-wrap mt-4">
+      {badges.map((badge) => <Badge text={badge} />)}
+    </div>
+    <p class="text-justify mt-4 font-roboto text-victoria-100 text-lg">
+      {content}
+    </p>
   </div>
 </project-entry>
 
