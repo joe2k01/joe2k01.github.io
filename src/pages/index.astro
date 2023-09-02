@@ -17,27 +17,51 @@ import Layout from "../layouts/Layout.astro";
   const projects = document.getElementById(
     "projects_fragment"
   ) as HTMLDivElement;
+  const hero = document.getElementById("hero_fragment") as HTMLDivElement;
+  const gradient = document.getElementById(
+    "gradientBackground"
+  ) as HTMLImageElement;
 
   let projectsOffset = projects.scrollHeight;
+  let heroOffset = hero.scrollHeight;
+  let total = heroOffset + projectsOffset;
+  let engageGradient = total - total / 8;
 
   function pourSecondColour() {
-    if (window.scrollY < window.innerHeight) {
-      const scrollPercentage = (window.scrollY * 100) / window.innerHeight;
-      document.documentElement.style.setProperty(
-        "--second-bg-color-pour",
-        `${scrollPercentage}%`
-      );
-    } else {
-      const pastH = window.scrollY - projectsOffset;
+    const scroll = window.scrollY;
 
-      if (pastH < window.innerHeight && pastH > 0) {
-        const scrollPercentage = 100 - (pastH * 100) / window.innerHeight;
+    if (scroll <= total) {
+      if (scroll <= heroOffset) {
+        const pourPercentage = Math.round((scroll / heroOffset) * 100);
+        console.log(scroll, heroOffset, pourPercentage);
         document.documentElement.style.setProperty(
           "--second-bg-color-pour",
-          `${scrollPercentage}%`
+          `${pourPercentage}%`
         );
+      } else if (scroll >= engageGradient && scroll <= total) {
+        const opacityNormalised =
+          (scroll - engageGradient) / (total - engageGradient);
+        gradient.style.opacity = `${opacityNormalised}`;
       }
     }
+
+    // if (window.scrollY < window.innerHeight) {
+    //   const scrollPercentage = (window.scrollY * 100) / window.innerHeight;
+    //   document.documentElement.style.setProperty(
+    //     "--second-bg-color-pour",
+    //     `${scrollPercentage}%`
+    //   );
+    // } else {
+    //   const pastH = window.scrollY - projectsOffset;
+
+    //   if (pastH < window.innerHeight && pastH > 0) {
+    //     const scrollPercentage = 100 - (pastH * 100) / window.innerHeight;
+    //     document.documentElement.style.setProperty(
+    //       "--second-bg-color-pour",
+    //       `${scrollPercentage}%`
+    //     );
+    //   }
+    // }
   }
 
   window.addEventListener("resize", () => {
@@ -48,4 +72,10 @@ import Layout from "../layouts/Layout.astro";
   window.addEventListener("scroll", () => {
     pourSecondColour();
   });
+
+  // top - black
+  // projects - victoria
+  // rest - gradient
+  // Scroll 100% of screen -> victoria
+  // Scroll 90% of projects -> gradient
 </script>

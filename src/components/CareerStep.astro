@@ -1,0 +1,38 @@
+---
+import Badge from "./Badge.astro";
+interface Props {
+  badgeText: string;
+  company: string;
+  tw: string;
+  year: string;
+  parallaxWeightLTR: string;
+}
+
+const {
+  company,
+  badgeText,
+  tw: positionStyling,
+  year,
+  parallaxWeightLTR,
+} = Astro.props;
+
+const tw =
+  "justify-between py-2 px-4 flex flex-row rounded-full \
+  bg-violet-400 drop-shadow-md transition-all duration-75 \
+  ease origin-center hover:scale-110 translate-x-0 translate-y-0 \
+  hover:bg-violet-600 group";
+---
+
+<div
+  class={`${tw} ${positionStyling}`}
+  data-parallax-weight-ltr={parallaxWeightLTR}
+>
+  <span
+    class="text-victoria-1000 group-hover:text-violet-300 font-roboto md:text-xl lg:text-2xl my-auto"
+    >{company} - {year}</span
+  >
+  <Badge
+    text={badgeText}
+    tw="text-violet-900 border-violet-900 group-hover:text-violet-200 group-hover:border-violet-200"
+  />
+</div>

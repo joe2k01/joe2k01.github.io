@@ -1,9 +1,9 @@
 <div class="py-20 relative flex flex-col min-h-screen" id="about">
-  <img
+  <!-- <img
     class="w-full h-full object-cover -z-10 absolute top-0 left-0 opacity-0 transition-opacity duration-200 ease-in"
     src="/about_bg.svg"
     id="aboutBackground"
-  />
+  /> -->
 
   <h1
     class="font-playfair font-extrabold text-violet-200 text-6xl mt-5 ml-10 overflow-clip"
@@ -16,7 +16,7 @@
     </p>
   </h1>
   <div
-    class="m-auto p-10 font-roboto font-semibold text-victoria-50 text-center text-border opacity-0 transition-opacity duration-300 ease delay-200"
+    class="m-auto p-10 font-roboto font-semibold text-victoria-50 text-center text-border opacity-0 transition-opacity duration-300 ease delay-200 mt-40 mb-20"
     id="aboutContent"
   >
     <p class="text-6xl relative">
@@ -88,9 +88,9 @@
 
 <script>
   const about = document.getElementById("about") as HTMLDivElement;
-  const background = document.getElementById(
-    "aboutBackground"
-  ) as HTMLImageElement;
+//   const background = document.getElementById(
+//     "aboutBackground"
+//   ) as HTMLImageElement;
   const portraitDesktop = document.getElementById(
     "portraitDesktop"
   ) as HTMLSpanElement;
@@ -101,12 +101,12 @@
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          background.classList.remove("opacity-0");
+        //   background.classList.remove("opacity-0");
           portraitDesktop.classList.remove("scale-0");
           title.classList.add("text-present");
           content.classList.remove("opacity-0");
         } else {
-          background.classList.add("opacity-0");
+        //   background.classList.add("opacity-0");
           portraitDesktop.classList.add("scale-0");
           title.classList.remove("text-present");
           content.classList.add("opacity-0");

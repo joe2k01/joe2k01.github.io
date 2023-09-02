@@ -1,0 +1,108 @@
+---
+import CareerStep from "../components/CareerStep.astro";
+---
+
+<div class="flex flex-col min-h-screen w-full overflow-clip" id="career">
+  <h1 class="text-violet-300 font-playfair font-extrabold text-6xl ml-10 mt-5">
+    Experience
+  </h1>
+
+  <div
+    class="grid grid-rows-5 grid-cols-11 m-10 gap-8"
+    id="careerGrid"
+    data-parallax-weight="5"
+  >
+    <CareerStep
+      company="TSYS"
+      badgeText="Internship"
+      tw="row-start-4 col-start-1 col-span-4"
+      year="2021"
+      parallaxWeightLTR="1"
+    />
+    <CareerStep
+      company="Sky"
+      badgeText="Internship"
+      tw="row-start-3 col-start-4 col-span-4"
+      year="2022"
+      parallaxWeightLTR="2"
+    />
+    <CareerStep
+      company="S&P Global"
+      badgeText="Internship"
+      tw="row-start-2 col-start-7 col-span-5"
+      year="2023"
+      parallaxWeightLTR="3"
+    />
+    <CareerStep
+      company="Nouse"
+      badgeText="Volunteering"
+      tw="row-start-1 col-start-6 col-span-6"
+      year="2022/23"
+      parallaxWeightLTR="3"
+    />
+    <CareerStep
+      company="ShockSoc"
+      badgeText="Volunteering"
+      tw="row-start-5 col-start-3 col-span-9"
+      year="2021/23"
+      parallaxWeightLTR="4"
+    />
+  </div>
+</div>
+
+<style>
+  .make-violet {
+    filter: grayscale(100%) invert(75%) sepia(50%) saturate(1279%)
+      hue-rotate(196deg) brightness(104%) contrast(98%);
+  }
+</style>
+
+<script>
+  const careerGrid = document.getElementById("careerGrid") as HTMLDivElement;
+  const career = document.getElementById("career") as HTMLDivElement;
+  const steps = careerGrid.querySelectorAll(":scope > div");
+  const parallaxWeight = parseInt(careerGrid.dataset.parallaxWeight ?? "5");
+
+  function parallax(event: MouseEvent | TouchEvent) {
+    const halfWidth = window.innerWidth / 2;
+    const halfHeight = window.innerHeight / 2;
+    let x, y;
+    if (event instanceof MouseEvent) {
+      x = event.clientX;
+      y = event.clientY;
+    } else {
+      x = event.touches[0].clientX;
+      y = event.touches[0].clientY;
+    }
+
+    const xW = -(x - halfWidth) / halfWidth;
+    const yW = -(y - halfHeight) / halfHeight;
+
+    steps.forEach((careerStepElement, i) => {
+      const careerStep = careerStepElement as HTMLElement;
+      const pW = parseInt(careerStep.dataset.parallaxWeightLtr ?? "4");
+
+      let vertical, lateral;
+
+      if (xW >= 0) {
+        lateral = pW * xW;
+      } else {
+        lateral = (parallaxWeight - pW) * xW;
+      }
+
+      if (yW >= 0) {
+        vertical = pW * yW;
+      } else {
+        vertical = (parallaxWeight - pW) * yW;
+      }
+      careerStep.style.setProperty("--tw-translate-x", `${lateral * 2}%`);
+      careerStep.style.setProperty("--tw-translate-y", `${vertical * 10}%`);
+    });
+  }
+
+  career.addEventListener("mousemove", parallax);
+
+  career.addEventListener("touchmove", parallax, {
+    passive: true,
+  });
+</script>
