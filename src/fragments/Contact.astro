@@ -1,0 +1,52 @@
+<div class="flex flex-row p-10 bg-cinnabar-950 h-screen" id="contact">
+  <div class="w-1/4 flex flex-col">
+    <h1 class="text-6xl font-playfair text-cinnabar-200">Let&rsquo;s chat!</h1>
+    <p class="text-2xl text-cinnabar-50 mt-10 contact-methods">
+      If you&rsquo;re looking for a software engineer for your project, look no
+      further! You can <a href="#">email me</a> or <a href="#"
+        >find me on linkedin</a
+      >.
+    </p>
+  </div>
+  <div class="w-3/4 h-full grid contents-center justify-center">
+    <div class="w-full">
+      <div
+        class="p-2 bg-cinnabar-300 h-5/6 aspect-square clip-selfie flex overflow-hidden"
+      >
+        <img
+          class="clip-selfie -translate-y-full transition-transform duration-500 ease-in-out"
+          src="/giuseppe.webp"
+          id="contactImage"
+        />
+      </div>
+      <div class="flex flex-row w-full justify-between mt-10 w-1/2 m-auto">
+        <a>Github</a>
+        <a>Linkedin</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const contact = document.getElementById("contact") as HTMLDivElement;
+  const image = document.getElementById("contactImage") as HTMLImageElement;
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) image.classList.remove("-translate-y-full");
+        else image.classList.add("-translate-y-full");
+      });
+    },
+    {
+      rootMargin: "0px 0px -100% 0px",
+    }
+  );
+
+  observer.observe(contact);
+</script>
+
+<style>
+  .contact-methods > a {
+    @apply text-sazerac-300 hover:line-through hover:text-sazerac-400;
+  }
+</style>

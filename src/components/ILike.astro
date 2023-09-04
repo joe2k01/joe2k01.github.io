@@ -1,0 +1,75 @@
+<span id="ILike" class="overflow-hidden relative i-like inline-block"
+  ><span id="firstLike" class="show">I like making pretty websites.</span><span
+    class="hide">I like coffee.</span
+  ><span class="hide">I like Formula 1.</span><span class="hide"
+    >I like making pizza.</span
+  ><span class="hide">I like material design.</span><span class="hide"
+    >I like Pizza.</span
+  ><span class="hide">I like cooking.</span><span class="hide"
+    >I like music.</span
+  ><span class="hide">I like road trips.</span><span class="hide"
+    >I like art.</span
+  ><span class="hide">I like history.</span><span class="hide"
+    >I like gardening.</span
+  ><span class="hide">I like photography.</span><span class="hide"
+    >I like technology.</span
+  ><span class="hide">I like working out.</span><span class="hide"
+    >I like concerts.</span
+  ></span
+>
+
+<script>
+  const iLike = document.getElementById("ILike") as HTMLSpanElement;
+  const children = iLike.querySelectorAll(
+    ":scope > span"
+  ) as NodeListOf<HTMLSpanElement>;
+  let active = document.getElementById("firstLike") as HTMLSpanElement;
+  let trigger = true;
+
+  function rotate() {
+    const randomIdx = Math.round(Math.random() * (children.length - 1));
+
+    active.classList.remove("show");
+    active.classList.add("hide");
+
+    active = children[randomIdx];
+
+    active.classList.add("show");
+    active.classList.remove("hide");
+  }
+
+  const title = document.getElementById("aboutTitle") as HTMLHeadingElement;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && trigger) {
+          trigger = false;
+          setTimeout(() => setInterval(rotate, 3500), 3000);
+          observer.disconnect();
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -100% 0px",
+    }
+  );
+
+  observer.observe(title);
+</script>
+
+<style>
+  .hide {
+    @apply -rotate-90 -translate-y-full;
+  }
+  .show {
+    @apply rotate-0 translate-y-0;
+  }
+
+  .i-like > span {
+    @apply inline-block origin-bottom-left transition-transform duration-700;
+  }
+  .i-like > span:not(:first-child) {
+    @apply absolute top-0 left-0 w-full;
+  }
+</style>

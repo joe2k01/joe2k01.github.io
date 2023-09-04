@@ -1,6 +1,7 @@
 ---
 import About from "../fragments/About.astro";
 import Career from "../fragments/Career.astro";
+import Contact from "../fragments/Contact.astro";
 import Hero from "../fragments/Hero.astro";
 import Projects from "../fragments/Projects.astro";
 import Layout from "../layouts/Layout.astro";
@@ -11,6 +12,7 @@ import Layout from "../layouts/Layout.astro";
   <Projects id="projects_fragment" />
   <About />
   <Career />
+  <Contact />
 </Layout>
 
 <script>
@@ -20,7 +22,7 @@ import Layout from "../layouts/Layout.astro";
   const hero = document.getElementById("hero_fragment") as HTMLDivElement;
   const gradient = document.getElementById(
     "gradientBackground"
-  ) as HTMLImageElement;
+  ) as HTMLDivElement;
 
   let projectsOffset = projects.scrollHeight;
   let heroOffset = hero.scrollHeight;
@@ -33,7 +35,6 @@ import Layout from "../layouts/Layout.astro";
     if (scroll <= total) {
       if (scroll <= heroOffset) {
         const pourPercentage = Math.round((scroll / heroOffset) * 100);
-        console.log(scroll, heroOffset, pourPercentage);
         document.documentElement.style.setProperty(
           "--second-bg-color-pour",
           `${pourPercentage}%`
@@ -44,24 +45,6 @@ import Layout from "../layouts/Layout.astro";
         gradient.style.opacity = `${opacityNormalised}`;
       }
     }
-
-    // if (window.scrollY < window.innerHeight) {
-    //   const scrollPercentage = (window.scrollY * 100) / window.innerHeight;
-    //   document.documentElement.style.setProperty(
-    //     "--second-bg-color-pour",
-    //     `${scrollPercentage}%`
-    //   );
-    // } else {
-    //   const pastH = window.scrollY - projectsOffset;
-
-    //   if (pastH < window.innerHeight && pastH > 0) {
-    //     const scrollPercentage = 100 - (pastH * 100) / window.innerHeight;
-    //     document.documentElement.style.setProperty(
-    //       "--second-bg-color-pour",
-    //       `${scrollPercentage}%`
-    //     );
-    //   }
-    // }
   }
 
   window.addEventListener("resize", () => {
@@ -73,9 +56,25 @@ import Layout from "../layouts/Layout.astro";
     pourSecondColour();
   });
 
-  // top - black
-  // projects - victoria
-  // rest - gradient
-  // Scroll 100% of screen -> victoria
-  // Scroll 90% of projects -> gradient
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target.id === "projects_fragment")
+            gradient.style.opacity = "0";
+          else if (entry.target.id === "hero_fragment")
+            document.documentElement.style.setProperty(
+              "--second-bg-color-pour",
+              `0%`
+            );
+        }
+      });
+    },
+    {
+      rootMargin: "-100% 0px 0px 0px",
+    }
+  );
+
+  observer.observe(hero);
+  observer.observe(projects);
 </script>
