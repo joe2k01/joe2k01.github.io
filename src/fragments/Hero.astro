@@ -1,14 +1,61 @@
 ---
-interface Props {
-  id: string;
-}
-
-const { id } = Astro.props;
+import { Icon } from "astro-icon";
+import MarqueeSeparator from "../components/MarqueeSeparator.astro";
 ---
 
-<div class="w-full min-h-screen min-h-[100dvh] relative" id={id}>
+<div
+  class="w-full min-h-screen min-h-[100dvh] relative flex flex-row z-0"
+  id="hero_fragment"
+>
+  <canvas class="absolute top-0 left-0 outline-none" id="webgl"></canvas>
+  <div class="w-1/2 font-baskerville">
+    <h1 class="text-cinnabar-500 text-6xl mt-10 ml-10">Giuseppe Barillari</h1>
+    <p class="ml-10 mt-5 text-4xl text-cinnabar-400">
+      Full-stack software engineer
+    </p>
+  </div>
+  <div class="w-1/2 flex flex-row-reverse justify-items-end">
+    <div
+      class="p-4 rounded-md h-max text-cinnabar-50 w-1/2 m-4 text-justify bg-zinc-900 bg-opacity-50 z-10"
+    >
+      <h4 class="text-3xl">
+        <span
+          ><Icon
+            name="ph:info-duotone"
+            class="text-cinnabar-500 w-8 h-8 inline"
+          /></span
+        ><span class="ml-2 font-baskerville">What&rsquo;s this?</span>
+      </h4>
+      <p class="hyphens-auto mt-4 text-lg" lang="en">
+        &ldquo;The Giants of Mont'e Prama are ancient stone sculptures created
+        by the Nuragic civilization of Sardinia, Italy. Fragmented into numerous
+        pieces, they were discovered in March 1974 on farmland near Mont'e
+        Prama, in the comune of Cabras, province of Oristano, in central-western
+        Sardinia. The statues are carved in local sandstone and their height
+        varies between 2 and 2.5 meters.&rdquo;<br /><br />
+        - Giants of Mont'e Prama. (2023, August 28). In <a
+          class="text-cinnabar-400 hover:line-through hover:text-cinnabar-500"
+          href="https://en.wikipedia.org/wiki/Giants_of_Mont%27e_Prama"
+          >Wikipedia</a
+        >.
+      </p>
+    </div>
+  </div>
   <div
-    class="absolute w-10 h-10 bg-red-500 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+    class="absolute bottom-0 left-0 translate-y-1/2 w-full overflow-x-hidden text-6xl text-cinnabar-500 font-bold border-y-4 border-cinnabar-500 flex flex-row"
   >
+    <span
+      class="w-screen text-justify flex flex-row justify-between h-16 shrink-0 marquee mx-20 transition-transform ease-in-out duration-75"
+      ><span>Discover</span><MarqueeSeparator /><span>Learn</span
+      ><MarqueeSeparator /><span>Implement</span><MarqueeSeparator /><span
+        >Ship</span
+      ><MarqueeSeparator /></span
+    >
   </div>
 </div>
+<script src="../components/canvasHandler.ts"></script>
+<style>
+  .marquee {
+    transform: translate3d(calc(-1% * var(--second-bg-color-percentage)), 0, 0);
+  }
+</style>

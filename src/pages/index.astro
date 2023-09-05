@@ -8,7 +8,7 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Hero id="hero_fragment" />
+  <Hero />
   <Projects id="projects_fragment" />
   <About />
   <Career />
@@ -36,8 +36,8 @@ import Layout from "../layouts/Layout.astro";
       if (scroll <= heroOffset) {
         const pourPercentage = Math.round((scroll / heroOffset) * 100);
         document.documentElement.style.setProperty(
-          "--second-bg-color-pour",
-          `${pourPercentage}%`
+          "--second-bg-color-percentage",
+          `${pourPercentage}`
         );
       } else if (scroll >= engageGradient && scroll <= total) {
         const opacityNormalised =
@@ -64,8 +64,8 @@ import Layout from "../layouts/Layout.astro";
             gradient.style.opacity = "0";
           else if (entry.target.id === "hero_fragment")
             document.documentElement.style.setProperty(
-              "--second-bg-color-pour",
-              `0%`
+              "--second-bg-color-percentage",
+              "0"
             );
         }
       });
