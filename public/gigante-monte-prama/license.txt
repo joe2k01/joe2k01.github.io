@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gigante Mont'e Prama
+* source:	https://sketchfab.com/3d-models/gigante-monte-prama-be31bb4c0f8c406483d18369b7ea16df
+* author:	eribertocaria (https://sketchfab.com/eribertocaria)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gigante Mont'e Prama" (https://sketchfab.com/3d-models/gigante-monte-prama-be31bb4c0f8c406483d18369b7ea16df) by eribertocaria (https://sketchfab.com/eribertocaria) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
