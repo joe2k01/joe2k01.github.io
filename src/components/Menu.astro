@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<nav
+  class="fixed bottom-16 right-0 z-50 flex flex-row justify-between items-center nav-desktop rounded-l-full px-4 bg-cinnabar-400 font-playfair font-bold text-xl text-cinnabar-950"
+>
+  <Icon name="jam:menu" class="w-10 h-10" />
+  <a href="#hero_fragment" class="px-2 hover:line-through">Home</a>
+  <a href="#projects_fragment" class="px-2 hover:line-through">Projects</a>
+  <a href="#about" class="px-2 hover:line-through">About</a>
+  <a href="#career" class="px-2 hover:line-through">Experience</a>
+</nav>
+
+<style>
+  .nav-desktop {
+    transition: transform 1s ease;
+    transform: translate3d(calc(100% - 40px - 16px), 0, 0);
+  }
+
+  .nav-desktop:hover {
+    transform: translate3d(0, 0, 0);
+  }
+</style>
