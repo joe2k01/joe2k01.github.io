@@ -1,0 +1,66 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<footer
+  class="text-lg font-bold flex items-center text-cinnabar-800 py-2 px-4 justify-between relative footer-border"
+>
+  <span class="font-code flex items-center"
+    ><Icon name="mdi:copyright" class="w-8 h-8 inline" />2023 Giuseppe Barillari
+    &centerdot;<span class="whitespace-pre"> Credits</span></span
+  >
+  <div class="font-playfair flex">
+    <a
+      class="pr-6 hover:text-cinnabar-500 hover:line-through"
+      href="https://www.linkedin.com/in/giuseppe-barillari-276057208/"
+      target="_blank"
+      rel="noopener noreferrer">Linkedin</a
+    >
+    <a
+      class="pr-6 hover:text-cinnabar-500 hover:line-through"
+      href="https://github.com/joe2k01/"
+      target="_blank"
+      rel="noopener noreferrer">GitHub</a
+    >
+    <a
+      class="hover:text-cinnabar-500 hover:line-through"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer">CV</a
+    >
+  </div>
+</footer>
+
+<style>
+  .footer-border::before {
+    content: "";
+    position: absolute;
+    top: -3px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background-image: linear-gradient(
+      to right,
+      theme(colors.sazerac.400),
+      theme(colors.sazerac.600),
+      theme(colors.cinnabar.700),
+      theme(colors.cinnabar.500),
+      theme(colors.sazerac.400),
+      theme(colors.sazerac.600),
+      theme(colors.cinnabar.700),
+      theme(colors.cinnabar.500),
+      theme(colors.sazerac.400)
+    );
+    background-size: 200% 100%;
+    animation: gradient-slide 5s ease infinite;
+  }
+
+  @keyframes gradient-slide {
+    0% {
+      background-position: 100% 0%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+</style>

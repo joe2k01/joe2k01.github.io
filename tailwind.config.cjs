@@ -36,6 +36,7 @@ module.exports = {
         roboto: ["'Roboto'", "sans-serif"],
         emoji: ["'Noto Color Emoji'", "sans-serif"],
         baskerville: ["'Libre Baskerville'", "serif"],
+        code: ["'Source Code Pro'", "monospace"],
       },
     },
   },

@@ -1,52 +1,45 @@
-<div class="flex flex-row p-10 bg-cinnabar-950 h-screen" id="contact">
-  <div class="w-1/4 flex flex-col">
-    <h1 class="text-6xl font-playfair text-cinnabar-200">Let&rsquo;s chat!</h1>
-    <p class="text-2xl text-cinnabar-50 mt-10 contact-methods">
-      If you&rsquo;re looking for a software engineer for your project, look no
-      further! You can <a href="#">email me</a> or <a href="#"
-        >find me on linkedin</a
-      >.
-    </p>
-  </div>
-  <div class="w-3/4 h-full grid contents-center justify-center">
-    <div class="w-full">
-      <div
-        class="p-2 bg-cinnabar-300 h-5/6 aspect-square clip-selfie flex overflow-hidden"
+---
+import { Icon } from "astro-icon";
+---
+
+<div class="w-full mt-20" id="contact">
+  <h1 class="text-6xl font-playfair text-cinnabar-900 font-extrabold pl-10">
+    Ready to talk about a project?
+  </h1>
+  <div class="grid grid-cols-2 grid-rows-1">
+    <div class="flex flex-col pl-10 mt-10 text-xl font-medium w-3/4">
+      <p class="text-cinnabar-950">
+        Reach out if you need a software engineer for your project. I&rsquo;m
+        happy to get my hands dirty with all sort of problems.
+        <br />
+        If you just want to talk about your project but aren&rsquo;t looking to hire,
+        I still want to hear it!
+      </p>
+      <br />
+      <h4 class="font-playfair text-cinnabar-900 text-3xl font-bold">
+        If you made your mind up
+      </h4>
+      <p class="mt-4">
+        You might already have a pretty clear idea of what you want to build. If
+        that's the case, why don&rsquo;t you book a sessions so we can discuss
+        the specifics?
+      </p>
+      <a
+        href="https://calendly.com/joe2k01/30min"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="mt-4 mx-auto py-4 px-8 rounded-full text-center w-max font-code font-bold text-cinnabar-950 bg-cinnabar-400 shadow-md hover:bg-cinnabar-600 hover:text-cinnabar-200 hover:scale-110 hover:-translate-y-2 transition-all duration-150 ease-in-out"
+        ><Icon name="mdi:calendar" class="w-10 h-10 inline" />Book a session</a
       >
-        <img
-          class="clip-selfie -translate-y-full transition-transform duration-500 ease-in-out"
-          src="/giuseppe.webp"
-          id="contactImage"
-        />
-      </div>
-      <div class="flex flex-row w-full justify-between mt-10 w-1/2 m-auto">
-        <a>Github</a>
-        <a>Linkedin</a>
-      </div>
     </div>
+    <a
+      class="w-full aspect-video"
+      id="contactCanvasWrapper"
+      href="mailto:joe2k01dev@gmail.com"
+    >
+      <canvas id="contactWebgl"></canvas>
+    </a>
   </div>
 </div>
 
-<script>
-  const contact = document.getElementById("contact") as HTMLDivElement;
-  const image = document.getElementById("contactImage") as HTMLImageElement;
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) image.classList.remove("-translate-y-full");
-        else image.classList.add("-translate-y-full");
-      });
-    },
-    {
-      rootMargin: "0px 0px -100% 0px",
-    }
-  );
-
-  observer.observe(contact);
-</script>
-
-<style>
-  .contact-methods > a {
-    @apply text-sazerac-300 hover:line-through hover:text-sazerac-400;
-  }
-</style>
+<script src="../components/contactCanvasHandler.ts"></script>
