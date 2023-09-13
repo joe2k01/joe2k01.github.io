@@ -1,11 +1,14 @@
 ---
 import Badge from "./Badge.astro";
+import ToolTip from "./ToolTip.astro";
 interface Props {
   badgeText: string;
   company: string;
   tw: string;
   year: string;
   parallaxWeightLTR: string;
+  descriptionTitle: string;
+  description: string;
 }
 
 const {
@@ -14,6 +17,8 @@ const {
   tw: positionStyling,
   year,
   parallaxWeightLTR,
+  descriptionTitle,
+  description,
 } = Astro.props;
 
 const tw =
@@ -24,7 +29,7 @@ const tw =
 ---
 
 <div
-  class={`${tw} ${positionStyling}`}
+  class={`${tw} ${positionStyling} group relative z-0`}
   data-parallax-weight-ltr={parallaxWeightLTR}
 >
   <span
@@ -35,4 +40,8 @@ const tw =
     text={badgeText}
     tw="text-cinnabar-900 border-cinnabar-900 group-hover:text-cinnabar-200 group-hover:border-cinnabar-200"
   />
+  <ToolTip>
+    <h1 class="text-cinnabar-600 font-baskerville text-xl font-semibold">{descriptionTitle}</h1>
+    <p class="text-cinnabar-950 mt-4 max-w-prose text-justify">{description}</p>
+  </ToolTip>
 </div>

@@ -2,8 +2,10 @@
 import CareerStep from "../components/CareerStep.astro";
 ---
 
-<div class="flex flex-col min-h-screen w-full overflow-clip" id="career">
-  <h1 class="text-cinnabar-800 font-playfair font-extrabold text-6xl ml-10 mt-5">
+<div class="flex flex-col w-full overflow-x-clip" id="career">
+  <h1
+    class="text-cinnabar-800 font-playfair font-extrabold text-6xl ml-10 mt-5"
+  >
     Experience
   </h1>
 
@@ -13,18 +15,13 @@ import CareerStep from "../components/CareerStep.astro";
     data-parallax-weight="5"
   >
     <CareerStep
-      company="TSYS"
-      badgeText="Internship"
-      tw="row-start-4 col-start-1 col-span-4"
-      year="2021"
-      parallaxWeightLTR="1"
-    />
-    <CareerStep
-      company="Sky"
-      badgeText="Internship"
-      tw="row-start-3 col-start-4 col-span-4"
-      year="2022"
-      parallaxWeightLTR="2"
+      company="Nouse"
+      badgeText="Volunteering"
+      tw="row-start-1 col-start-6 col-span-6"
+      year="2022/23"
+      parallaxWeightLTR="3"
+      descriptionTitle="Technical Director"
+      description="Implemented a modern website while maintaining the already deployed infrastructure."
     />
     <CareerStep
       company="S&P Global"
@@ -32,13 +29,26 @@ import CareerStep from "../components/CareerStep.astro";
       tw="row-start-2 col-start-7 col-span-5"
       year="2023"
       parallaxWeightLTR="3"
+      descriptionTitle="Software Developer Summer Intern"
+      description="Full stack development of various web applications in the financial risk analytics sector. Developed and deployed an algorithm for data reporting with end-user-defined hyerarchy constraints. The web applications stacks included Vite, React, SQL, NodeJS and a in-house components library styled with SCSS."
     />
     <CareerStep
-      company="Nouse"
-      badgeText="Volunteering"
-      tw="row-start-1 col-start-6 col-span-6"
-      year="2022/23"
-      parallaxWeightLTR="3"
+      company="Sky"
+      badgeText="Internship"
+      tw="row-start-3 col-start-4 col-span-4"
+      year="2022"
+      parallaxWeightLTR="2"
+      descriptionTitle="Software Developer Summer Intern"
+      description="Full stack development and deployment of two internal web applications designed to broaden employees' skills. The two stacks included Docker, ReactJS, Java SpringBoot and ExpressJS."
+    />
+    <CareerStep
+      company="TSYS"
+      badgeText="Internship"
+      tw="row-start-4 col-start-1 col-span-4"
+      year="2021"
+      parallaxWeightLTR="1"
+      descriptionTitle="DocOps Cloud Engineer Summer Intern"
+      description="Designed and implemented the DocOps flow used by the Knaresborough branch. The job focused on Python and Docker during the prototyping stage and AWS and GCP during the deployment phase. Thousands of employees across different branches and departments are now using a product derived from the proposed implementation."
     />
     <CareerStep
       company="ShockSoc"
@@ -46,6 +56,8 @@ import CareerStep from "../components/CareerStep.astro";
       tw="row-start-5 col-start-3 col-span-9"
       year="2021/23"
       parallaxWeightLTR="4"
+      descriptionTitle="Treasurer"
+      description="Organised and coordinated a wide range of events including speaker talks, technical workshops and Q-Factor."
     />
   </div>
 </div>
