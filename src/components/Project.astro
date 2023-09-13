@@ -11,11 +11,11 @@ const { title, content, imageNumber, badges } = Astro.props;
 ---
 
 <project-entry
-  class="w-2/3 h-screen flex flex-col project"
+  class="w-full lg:w-2/3 min-h-[50vh] lg:h-screen flex flex-col project"
   data-image={imageNumber}
 >
   <div class="my-auto">
-    <h2 class="text-5xl font-playfair font-bold text-cinnabar-700">
+    <h2 class="text-3xl lg:text-5xl font-playfair font-bold text-cinnabar-700">
       {title}
     </h2>
     <div class="flex flex-row flex-wrap mt-4">
@@ -31,20 +31,24 @@ const { title, content, imageNumber, badges } = Astro.props;
   class ProjectEntry extends HTMLElement {
     observer: IntersectionObserver | undefined;
     imageNumber: string;
-    image: HTMLImageElement;
-    imageWrapper: HTMLDivElement;
+    image: NodeListOf<HTMLImageElement>;
+    imageWrapper: NodeListOf<HTMLDivElement>;
+    margin: string = "-20% 0px -80% 0px";
+    static desktopWidth = 1024;
+    static desktopMargin = "-20% 0px -80% 0px";
+    static mobileMargin = "0px 0px -50% 0px";
     constructor() {
       super();
 
       this.imageNumber = this.dataset.image ?? "0";
 
-      this.imageWrapper = document.getElementById(
-        `project-image-wrapper-${this.imageNumber}`
-      ) as HTMLDivElement;
+      this.imageWrapper = document.querySelectorAll(
+        `.project-image-wrapper-${this.imageNumber}`
+      ) as NodeListOf<HTMLDivElement>;
 
-      this.image = document.getElementById(
+      this.image = document.querySelectorAll(
         `project-image-${this.imageNumber}`
-      ) as HTMLImageElement;
+      ) as NodeListOf<HTMLImageElement>;
 
       this.setUpObserver();
 
@@ -59,20 +63,38 @@ const { title, content, imageNumber, badges } = Astro.props;
         (entries) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) {
-              this.imageWrapper.classList.remove("opacity-100");
-              this.image.classList.remove("scale-100");
-              this.imageWrapper.classList.add("opacity-0");
-              this.image.classList.add("scale-125");
+              if (
+                window.innerWidth >= ProjectEntry.desktopWidth ||
+                this.imageNumber !== "0"
+              ) {
+                this.imageWrapper.forEach((imageWrapper) => {
+                  imageWrapper.classList.remove("opacity-100");
+                  imageWrapper.classList.add("opacity-0");
+                });
+              }
+              this.image.forEach((image) => {
+                image.classList.remove("scale-100");
+                image.classList.add("scale-125");
+              });
             } else {
-              this.image.classList.remove("scale-125");
-              this.imageWrapper.classList.remove("opacity-0");
-              this.imageWrapper.classList.add("opacity-100");
-              this.image.classList.add("scale-100");
+              if (window.innerWidth >= 1024 || this.imageNumber !== "0") {
+                this.imageWrapper.forEach((imageWrapper) => {
+                  imageWrapper.classList.add("opacity-100");
+                  imageWrapper.classList.remove("opacity-0");
+                });
+              }
+              this.image.forEach((image) => {
+                image.classList.add("scale-100");
+                image.classList.remove("scale-125");
+              });
             }
           });
         },
         {
-          rootMargin: `-20% 0px -80% 0px`,
+          rootMargin:
+            window.innerWidth >= ProjectEntry.desktopWidth
+              ? ProjectEntry.desktopMargin
+              : ProjectEntry.mobileMargin,
         }
       );
 

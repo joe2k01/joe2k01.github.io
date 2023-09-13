@@ -1,0 +1,42 @@
+---
+import Project from "../components/Project.astro";
+import ProjectImage from "../components/ProjectImage.astro";
+interface Props {
+  id: string;
+}
+
+const { id } = Astro.props;
+---
+
+<div class="hidden lg:flex flex-row px-20 pb-4 pt-20" id={id}>
+  <div class="order-2 w-2/3">
+    <div class="w-full sticky h-screen top-0 inline-block">
+      <div class="w-full h-full relative">
+        <ProjectImage imageNumber={1} src="casteddu2.jpg" />
+        <ProjectImage imageNumber={0} src="casteddu1.jpg" />
+      </div>
+    </div>
+  </div>
+  <div class="order-1 w-full flex flex-col">
+    <h1
+      class="text-6xl py-6 w-full text-cinnabar-800 font-playfair font-extrabold"
+      id="projects-title"
+    >
+      Past Projects
+    </h1>
+    <div id="projects-wrapper">
+      <Project
+        title="Nouse"
+        badges={["AstroJS", "SolidJS", "PHP", "Docker"]}
+        imageNumber={0}
+        content="Nouse is a newspaper. It is the oldest student society at the University of York. I recently worked on the re-design and implementation of their website."
+      />
+      <Project
+        title="Shocksoc"
+        badges={["AstroJS", "SolidJS", "Firebase"]}
+        imageNumber={1}
+        content="ShockSoc is the University of York's engineering society. When I was elected secretary of the society, the website was a bit dated. I re-designed and developed the new website to include a built-in Content Management System for committee members."
+      />
+    </div>
+  </div>
+</div>

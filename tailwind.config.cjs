@@ -3,6 +3,9 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      zIndex: {
+        1: "1",
+      },
       colors: {
         sazerac: {
           50: "#fff3e2",
@@ -48,5 +51,7 @@ module.exports = {
     {
       pattern: /row-end-[0-9]+/,
     },
+    "z-0",
+    "z-1",
   ],
 };
