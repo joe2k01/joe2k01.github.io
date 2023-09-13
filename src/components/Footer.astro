@@ -3,27 +3,29 @@ import { Icon } from "astro-icon";
 ---
 
 <footer
-  class="text-lg font-bold flex items-center text-cinnabar-800 py-2 px-4 justify-between relative footer-border"
+  class="lg:text-lg font-bold flex flex-row items-center text-cinnabar-800 py-2 px-4 justify-between relative footer-border"
 >
-  <span class="font-code flex items-center"
-    ><Icon name="mdi:copyright" class="w-8 h-8 inline" />2023 Giuseppe Barillari
-    &centerdot;<span class="whitespace-pre"> Credits</span></span
+  <span class="font-code flex flex-col lg:flex-row lg:items-center max-w-[30%]"
+    ><Icon name="mdi:copyright" class="w-8 h-8 inline" />2023 Giuseppe Barillari<span
+      class="whitespace-pre hidden lg:inline"
+    > &centerdot; </span><span class="whitespace-pre">Credits</span></span
   >
-  <div class="font-playfair flex">
+  <div class="font-code flex lg:flex-row flex-col items-center">
     <a
-      class="pr-6 hover:text-cinnabar-500 hover:line-through"
+      class="lg:pr-6 lg:py-0 pb-2 hover:text-cinnabar-500 hover:line-through"
       href="https://www.linkedin.com/in/giuseppe-barillari-276057208/"
       target="_blank"
-      rel="noopener noreferrer">Linkedin</a
+      rel="noopener noreferrer"
+      ><Icon name="mdi:linkedin" class="w-10 h-10" /></a
     >
     <a
-      class="pr-6 hover:text-cinnabar-500 hover:line-through"
+      class="lg:pr-6 lg:py-0 py-2 hover:text-cinnabar-500 hover:line-through"
       href="https://github.com/joe2k01/"
       target="_blank"
-      rel="noopener noreferrer">GitHub</a
+      rel="noopener noreferrer"><Icon name="mdi:github" class="w-10 h-10" /></a
     >
     <a
-      class="hover:text-cinnabar-500 hover:line-through"
+      class="hover:text-cinnabar-500 lg:py-0 py-2 hover:line-through"
       href="#"
       target="_blank"
       rel="noopener noreferrer">CV</a

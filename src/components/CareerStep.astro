@@ -24,24 +24,26 @@ const {
 const tw =
   "justify-between py-2 px-4 flex flex-row rounded-full \
   bg-cinnabar-400 drop-shadow-md transition-all duration-75 \
-  ease origin-center hover:scale-110 translate-x-0 translate-y-0 \
-  hover:bg-cinnabar-600 group";
+  ease origin-center lg:hover:scale-110 translate-x-0 translate-y-0 \
+  lg:hover:bg-cinnabar-600 relative z-0 group";
 ---
 
-<div
-  class={`${tw} ${positionStyling} group relative z-0`}
+<button
+  class={`${tw} ${positionStyling}`}
   data-parallax-weight-ltr={parallaxWeightLTR}
 >
   <span
-    class="text-cinnabar-900 group-hover:text-cinnabar-200 font-roboto md:text-xl lg:text-2xl my-auto"
+    class="text-cinnabar-900 lg:group-hover:text-cinnabar-200 font-roboto md:text-xl lg:text-2xl my-auto"
     >{company} - {year}</span
   >
   <Badge
     text={badgeText}
-    tw="text-cinnabar-900 border-cinnabar-900 group-hover:text-cinnabar-200 group-hover:border-cinnabar-200"
+    tw="text-cinnabar-900 border-cinnabar-900 lg:group-hover:text-cinnabar-200 lg:group-hover:border-cinnabar-200"
   />
   <ToolTip>
-    <h1 class="text-cinnabar-600 font-baskerville text-xl font-semibold">{descriptionTitle}</h1>
+    <h1 class="text-cinnabar-600 font-baskerville text-xl font-semibold">
+      {descriptionTitle}
+    </h1>
     <p class="text-cinnabar-950 mt-4 max-w-prose text-justify">{description}</p>
   </ToolTip>
-</div>
+</button>

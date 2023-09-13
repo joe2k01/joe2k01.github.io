@@ -47,7 +47,7 @@ const { title, content, imageNumber, badges } = Astro.props;
       ) as NodeListOf<HTMLDivElement>;
 
       this.image = document.querySelectorAll(
-        `project-image-${this.imageNumber}`
+        `.project-image-${this.imageNumber}`
       ) as NodeListOf<HTMLImageElement>;
 
       this.setUpObserver();

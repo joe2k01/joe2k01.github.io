@@ -25,7 +25,7 @@ import Menu from "../components/Menu.astro";
     <slot />
     <Footer />
     <div
-      class="fixed top-0 left-0 w-full h-full gradient-bg blur-xl -z-10"
+      class="fixed top-0 left-0 w-full h-full gradient-bg blur-xl -z-10 opacity-0"
       id="gradientBackground"
     >
       <svg
@@ -62,7 +62,7 @@ import Menu from "../components/Menu.astro";
   :root {
     --first-bg-color: theme(colors.zinc.950);
     --second-bg-color: theme(colors.sazerac.50);
-    --second-bg-color-percentage: 100;
+    --second-bg-color-percentage: 0;
     --second-bg-color-pour: calc(var(--second-bg-color-percentage) * 1%);
     --body-bg: color-mix(
       in srgb,

@@ -4,5 +4,7 @@ import ProjectsMobile from "./ProjectsMobile.astro";
 const { id } = Astro.props;
 ---
 
-<ProjectsDesktop id={id} />
-<ProjectsMobile id={id} />
+<div id={id}>
+  <ProjectsDesktop id=`${id}_desktop` />
+  <ProjectsMobile id=`${id}_mobile` />
+</div>

@@ -23,7 +23,11 @@ const camera = new THREE.PerspectiveCamera(
   1,
   1000
 );
-camera.position.z = 10;
+if (window.innerWidth > 1024) {
+  camera.position.z = 10;
+} else {
+  camera.position.z = 12;
+}
 
 // Set up Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -47,6 +51,13 @@ window.addEventListener("resize", () => {
   // Update renderer
   renderer.setSize(dimensions.width, dimensions.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Move camera
+  if (window.innerWidth > 1024) {
+    camera.position.z = 10;
+  } else {
+    camera.position.z = 12;
+  }
 });
 
 // Set up font loader

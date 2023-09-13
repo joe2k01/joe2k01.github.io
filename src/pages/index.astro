@@ -24,13 +24,22 @@ import Layout from "../layouts/Layout.astro";
     "gradientBackground"
   ) as HTMLDivElement;
 
-  let projectsOffset = projects.scrollHeight;
-  let heroOffset = hero.scrollHeight;
-  let total = heroOffset + projectsOffset;
-  let engageGradient = total - total / 8;
+  let projectsOffset: number = 0;
+  let heroOffset: number = 0;
+  let total: number = 0;
+  let engageGradient: number = 0;
+
+  function updateTriggerPoints() {
+    projectsOffset = projects.scrollHeight;
+    heroOffset = hero.scrollHeight;
+    total = heroOffset + projectsOffset;
+    engageGradient = total - total / 8;
+  }
 
   function pourSecondColour() {
     const scroll = window.scrollY;
+
+    console.log(scroll, engageGradient, total);
 
     if (scroll <= total) {
       if (scroll <= heroOffset) {
@@ -47,8 +56,11 @@ import Layout from "../layouts/Layout.astro";
     }
   }
 
+  // Initial values
+  updateTriggerPoints();
+
   window.addEventListener("resize", () => {
-    projectsOffset = projects.scrollHeight;
+    updateTriggerPoints();
     pourSecondColour();
   });
 

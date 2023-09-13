@@ -3,21 +3,19 @@ import CareerStep from "../components/CareerStep.astro";
 ---
 
 <div class="flex flex-col w-full overflow-x-hidden pt-20" id="career">
-  <h1
-    class="text-cinnabar-800 font-playfair font-extrabold text-6xl ml-10"
-  >
+  <h1 class="text-cinnabar-800 font-playfair font-extrabold text-6xl ml-10">
     Experience
   </h1>
 
   <div
-    class="grid grid-rows-5 grid-cols-11 m-10 gap-8"
+    class="grid grid-rows-5 grid-cols-11 p-10 gap-8"
     id="careerGrid"
     data-parallax-weight="5"
   >
     <CareerStep
       company="Nouse"
       badgeText="Volunteering"
-      tw="row-start-1 col-start-6 col-span-6"
+      tw="row-start-1 lg:col-start-6 lg:col-span-6 col-span-11"
       year="2022/23"
       parallaxWeightLTR="3"
       descriptionTitle="Technical Director"
@@ -26,7 +24,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="S&P Global"
       badgeText="Internship"
-      tw="row-start-2 col-start-7 col-span-5"
+      tw="row-start-2 lg:col-start-7 lg:col-span-5 col-span-11"
       year="2023"
       parallaxWeightLTR="3"
       descriptionTitle="Software Developer Summer Intern"
@@ -35,7 +33,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="Sky"
       badgeText="Internship"
-      tw="row-start-3 col-start-4 col-span-4"
+      tw="row-start-3 lg:col-start-4 lg:col-span-4 col-span-11"
       year="2022"
       parallaxWeightLTR="2"
       descriptionTitle="Software Developer Summer Intern"
@@ -44,7 +42,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="TSYS"
       badgeText="Internship"
-      tw="row-start-4 col-start-1 col-span-4"
+      tw="row-start-4 lg:col-start-1 lg:col-span-4 col-span-11"
       year="2021"
       parallaxWeightLTR="1"
       descriptionTitle="DocOps Cloud Engineer Summer Intern"
@@ -53,7 +51,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="ShockSoc"
       badgeText="Volunteering"
-      tw="row-start-5 col-start-3 col-span-9"
+      tw="row-start-5 lg:col-start-3 lg:col-span-9 col-span-11"
       year="2021/23"
       parallaxWeightLTR="4"
       descriptionTitle="Treasurer"
@@ -72,49 +70,47 @@ import CareerStep from "../components/CareerStep.astro";
 <script>
   const careerGrid = document.getElementById("careerGrid") as HTMLDivElement;
   const career = document.getElementById("career") as HTMLDivElement;
-  const steps = careerGrid.querySelectorAll(":scope > div");
+  const steps = careerGrid.querySelectorAll(":scope > button");
   const parallaxWeight = parseInt(careerGrid.dataset.parallaxWeight ?? "5");
 
   function parallax(event: MouseEvent | TouchEvent) {
-    const halfWidth = window.innerWidth / 2;
-    const halfHeight = window.innerHeight / 2;
-    let x, y;
-    if (event instanceof MouseEvent) {
-      x = event.clientX;
-      y = event.clientY;
-    } else {
-      x = event.touches[0].clientX;
-      y = event.touches[0].clientY;
+    if (window.innerWidth >= 1024) {
+      const halfWidth = window.innerWidth / 2;
+      const halfHeight = window.innerHeight / 2;
+      let x, y;
+      if (event instanceof MouseEvent) {
+        x = event.clientX;
+        y = event.clientY;
+      } else {
+        x = event.touches[0].clientX;
+        y = event.touches[0].clientY;
+      }
+
+      const xW = -(x - halfWidth) / halfWidth;
+      const yW = -(y - halfHeight) / halfHeight;
+
+      steps.forEach((careerStepElement, i) => {
+        const careerStep = careerStepElement as HTMLElement;
+        const pW = parseInt(careerStep.dataset.parallaxWeightLtr ?? "4");
+
+        let vertical, lateral;
+
+        if (xW >= 0) {
+          lateral = pW * xW;
+        } else {
+          lateral = (parallaxWeight - pW) * xW;
+        }
+
+        if (yW >= 0) {
+          vertical = pW * yW;
+        } else {
+          vertical = (parallaxWeight - pW) * yW;
+        }
+        careerStep.style.setProperty("--tw-translate-x", `${lateral * 2}%`);
+        careerStep.style.setProperty("--tw-translate-y", `${vertical * 10}%`);
+      });
     }
-
-    const xW = -(x - halfWidth) / halfWidth;
-    const yW = -(y - halfHeight) / halfHeight;
-
-    steps.forEach((careerStepElement, i) => {
-      const careerStep = careerStepElement as HTMLElement;
-      const pW = parseInt(careerStep.dataset.parallaxWeightLtr ?? "4");
-
-      let vertical, lateral;
-
-      if (xW >= 0) {
-        lateral = pW * xW;
-      } else {
-        lateral = (parallaxWeight - pW) * xW;
-      }
-
-      if (yW >= 0) {
-        vertical = pW * yW;
-      } else {
-        vertical = (parallaxWeight - pW) * yW;
-      }
-      careerStep.style.setProperty("--tw-translate-x", `${lateral * 2}%`);
-      careerStep.style.setProperty("--tw-translate-y", `${vertical * 10}%`);
-    });
   }
 
   career.addEventListener("mousemove", parallax);
-
-  career.addEventListener("touchmove", parallax, {
-    passive: true,
-  });
 </script>
