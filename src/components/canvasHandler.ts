@@ -5,8 +5,8 @@ const canvas = document.getElementById("webgl") as HTMLCanvasElement;
 const hero = document.getElementById("hero_fragment") as HTMLDivElement;
 
 const dimensions = {
-  width: window.innerWidth,
-  height: window.innerHeight,
+  width: hero.scrollWidth,
+  height: hero.scrollHeight,
 };
 
 // Model loader
@@ -19,7 +19,11 @@ const camera = new THREE.PerspectiveCamera(
   1,
   1000
 );
-camera.position.z = 50;
+if (window.innerWidth > 768) {
+  camera.position.z = 50;
+} else {
+  camera.position.z = 60;
+}
 
 // Set up Renderer
 const renderer = new THREE.WebGLRenderer({
@@ -32,8 +36,8 @@ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 // Handle window resize event
 window.addEventListener("resize", () => {
   // Store new dimensions
-  dimensions.width = window.innerWidth;
-  dimensions.height = window.innerHeight;
+  dimensions.width = hero.scrollWidth;
+  dimensions.height = hero.scrollHeight;
 
   // Update camera
   camera.aspect = dimensions.width / dimensions.height;
@@ -42,6 +46,13 @@ window.addEventListener("resize", () => {
   // Update renderer
   renderer.setSize(dimensions.width, dimensions.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  // Move camera
+  if (window.innerWidth > 768) {
+    camera.position.z = 50;
+  } else {
+    camera.position.z = 60;
+  }
 });
 
 // Create scene
@@ -94,7 +105,6 @@ function tick() {
     // Calculate lights position
     const lightsX = 20 * mousePos.x;
     const lightsY = 20 * -mousePos.y;
-    console.log(lightsX, lightsY);
 
     // Animate gigante
     gigante.rotation.set(mousePos.y * 0.4, mousePos.x * 0.4 + rotation, 0);

@@ -4,19 +4,21 @@ import MarqueeSeparator from "../components/MarqueeSeparator.astro";
 ---
 
 <div
-  class="w-full min-h-screen min-h-[100dvh] relative flex flex-row z-0"
+  class="w-full fullscreen relative grid md:grid-rows-1 md:grid-cols-2 grid-rows-2 grid-cols-1 z-0"
   id="hero_fragment"
 >
   <canvas class="absolute top-0 left-0 outline-none" id="webgl"></canvas>
-  <div class="w-1/2 font-baskerville">
-    <h1 class="text-cinnabar-500 text-6xl mt-10 ml-10">Giuseppe Barillari</h1>
-    <p class="ml-10 mt-5 text-4xl text-cinnabar-400">
+  <div class="w-full font-baskerville text-center md:text-left">
+    <h1 class="text-cinnabar-500 2xl:text-8xl xl:text-6xl text-4xl mt-10 ml-10">
+      Giuseppe Barillari
+    </h1>
+    <p class="ml-10 mt-5 2xl:text-5xl xl:text-4xl text-xl text-cinnabar-400">
       Full-stack software engineer
     </p>
   </div>
-  <div class="w-1/2 flex flex-row-reverse justify-items-end">
+  <div class="w-full flex flex-row-reverse justify-items-end relative h-full">
     <div
-      class="p-4 rounded-md h-max text-cinnabar-50 w-1/2 m-4 text-justify bg-zinc-900 bg-opacity-50 z-10"
+      class="hidden lg:block p-4 rounded-md h-max text-cinnabar-50 w-1/2 m-4 text-justify bg-zinc-900 bg-opacity-50 z-10"
     >
       <h4 class="text-3xl">
         <span
@@ -40,12 +42,55 @@ import MarqueeSeparator from "../components/MarqueeSeparator.astro";
         >.
       </p>
     </div>
+    <div
+      class="absolute block lg:hidden md:left-auto md:right-2 md:top-5 left-2 bottom-16"
+    >
+      <button
+        class="rounded-md border-2 border-cinnabar-500 p-2"
+        id="showGiganteInfo"
+      >
+        <Icon name="ph:info-duotone" class="text-cinnabar-500 w-8 h-8 inline" />
+      </button>
+    </div>
+    <dialog
+      id="mobileGiganteInfo"
+      class="p-4 rounded-md h-max text-cinnabar-50 m-4 text-justify bg-zinc-900 bg-opacity-90 z-10 w-full"
+    >
+      <form>
+        <h4 class="text-3xl flex flex-row items-center justify-between">
+          <span>
+            <span
+              ><Icon
+                name="ph:info-duotone"
+                class="text-cinnabar-500 w-8 h-8 inline"
+              /></span
+            ><span class="ml-2 font-baskerville">What&rsquo;s this?</span></span
+          >
+          <button formmethod="dialog">
+            <Icon name="mdi:close" class="w-8 h-8 text-cinnabar-500" />
+          </button>
+        </h4>
+        <p class="hyphens-auto mt-4 text-lg" lang="en">
+          &ldquo;The Giants of Mont'e Prama are ancient stone sculptures created
+          by the Nuragic civilization of Sardinia, Italy. Fragmented into
+          numerous pieces, they were discovered in March 1974 on farmland near
+          Mont'e Prama, in the comune of Cabras, province of Oristano, in
+          central-western Sardinia. The statues are carved in local sandstone
+          and their height varies between 2 and 2.5 meters.&rdquo;<br /><br />
+          - Giants of Mont'e Prama. (2023, August 28). In <a
+            class="text-cinnabar-400 hover:line-through hover:text-cinnabar-500"
+            href="https://en.wikipedia.org/wiki/Giants_of_Mont%27e_Prama"
+            >Wikipedia</a
+          >.
+        </p>
+      </form>
+    </dialog>
   </div>
   <div
-    class="absolute bottom-0 left-0 translate-y-1/2 w-full overflow-x-hidden text-6xl text-cinnabar-500 font-bold border-y-4 border-cinnabar-500 flex flex-row"
+    class="absolute bottom-0 left-0 translate-y-1/2 w-full overflow-hidden text-xl md:text-4xl lg:text-6xl text-cinnabar-500 font-bold border-y-4 border-cinnabar-500 flex flex-row"
   >
     <span
-      class="w-screen text-justify flex flex-row justify-between h-16 shrink-0 marquee mx-20 transition-transform ease-in-out duration-75"
+      class="w-screen text-justify flex flex-row justify-between h-8 md:h-10 lg:h-16 shrink-0 marquee mx-20 transition-transform ease-in-out duration-75"
       ><span>Discover</span><MarqueeSeparator /><span>Learn</span
       ><MarqueeSeparator /><span>Implement</span><MarqueeSeparator /><span
         >Ship</span
@@ -59,3 +104,15 @@ import MarqueeSeparator from "../components/MarqueeSeparator.astro";
     transform: translate3d(calc(-1% * var(--second-bg-color-percentage)), 0, 0);
   }
 </style>
+<script>
+  const showInfo = document.getElementById(
+    "showGiganteInfo"
+  ) as HTMLButtonElement;
+  const giganteInfo = document.getElementById(
+    "mobileGiganteInfo"
+  ) as HTMLDialogElement;
+
+  showInfo.addEventListener("click", () => {
+    giganteInfo.showModal();
+  });
+</script>
