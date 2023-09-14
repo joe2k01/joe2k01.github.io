@@ -14,6 +14,7 @@ import Layout from "../layouts/Layout.astro";
   <Career />
   <Contact />
 </Layout>
+<script src="../components/canvasHandlers.ts"/>
 
 <script>
   const projects = document.getElementById(
@@ -38,8 +39,6 @@ import Layout from "../layouts/Layout.astro";
 
   function pourSecondColour() {
     const scroll = window.scrollY;
-
-    console.log(scroll, engageGradient, total);
 
     if (scroll <= total) {
       if (scroll <= heroOffset) {
