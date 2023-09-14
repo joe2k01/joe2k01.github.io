@@ -1,5 +1,6 @@
 ---
 import Badge from "./Badge.astro";
+import MobileCareerStepModal from "./MobileCareerStepModal.astro";
 import ToolTip from "./ToolTip.astro";
 interface Props {
   badgeText: string;
@@ -26,11 +27,14 @@ const tw =
   bg-cinnabar-400 drop-shadow-md transition-all duration-75 \
   ease origin-center lg:hover:scale-110 translate-x-0 translate-y-0 \
   lg:hover:bg-cinnabar-600 relative z-0 group";
+
+const modalId = `${descriptionTitle.replaceAll(" ", "_")}_modal`;
 ---
 
 <button
   class={`${tw} ${positionStyling}`}
   data-parallax-weight-ltr={parallaxWeightLTR}
+  onclick=`(function(){if(window.innerWidth < 1024) document.getElementById("${modalId}").showModal()})()`
 >
   <span
     class="text-cinnabar-900 lg:group-hover:text-cinnabar-200 font-roboto md:text-xl lg:text-2xl my-auto"
@@ -47,3 +51,8 @@ const tw =
     <p class="text-cinnabar-950 mt-4 max-w-prose text-justify">{description}</p>
   </ToolTip>
 </button>
+<MobileCareerStepModal
+  id={modalId}
+  title={descriptionTitle}
+  description={description}
+/>
