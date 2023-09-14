@@ -7,8 +7,16 @@ interface Props {
 const { text, tw } = Astro.props;
 ---
 
-<span
-  class={`px-2 py-1 rounded-md text-cinnabar-500 bg-transparent border-2 border-cinnabar-500 text-base font-roboto select-none mr-4 h-min my-auto ${
-    tw ?? ""
-  }`}>{text}</span
->
+<span class={`badge ${tw ?? ""}`}>{text}</span>
+
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer components {
+    .badge {
+      @apply px-2 py-1 rounded-md text-cinnabar-500 bg-transparent border-2 border-cinnabar-500 text-base font-roboto select-none mr-4 h-min my-auto;
+    }
+  }
+</style>

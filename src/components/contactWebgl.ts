@@ -2,6 +2,7 @@ import { WebGLAbstract } from "./webGLAbstract";
 import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { TextureLoader, Mesh, MeshMatcapMaterial } from "three";
+import { SCREEN_LG } from "./screenCostants";
 
 export class ContactWebGL extends WebGLAbstract {
   private event: Event;
@@ -38,7 +39,7 @@ export class ContactWebGL extends WebGLAbstract {
   }
 
   protected positionCamera(): void {
-    if (window.innerWidth > 1024) {
+    if (window.innerWidth > SCREEN_LG) {
       this.camera.position.z = 10;
     } else {
       this.camera.position.z = 12;

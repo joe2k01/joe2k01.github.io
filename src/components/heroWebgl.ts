@@ -1,10 +1,7 @@
-import {
-    AmbientLight,
-    HemisphereLight,
-    PointLight
-} from "three";
+import { AmbientLight, HemisphereLight, PointLight } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { WebGLAbstract } from "./webGLAbstract";
+import { SCREEN_MD } from "./screenCostants";
 
 export class HeroWebGL extends WebGLAbstract {
   private gltfLoader: GLTFLoader;
@@ -76,7 +73,7 @@ export class HeroWebGL extends WebGLAbstract {
   }
 
   positionCamera(): void {
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > SCREEN_MD) {
       this.camera.position.z = 50;
     } else {
       this.camera.position.z = 60;

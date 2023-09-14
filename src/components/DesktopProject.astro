@@ -11,7 +11,7 @@ const { title, content, imageNumber, badges } = Astro.props;
 ---
 
 <project-entry
-  class="w-full lg:w-2/3 min-h-[50vh] lg:h-screen flex flex-col project"
+  class="w-2/3 h-screen flex flex-col"
   data-image={imageNumber}
 >
   <div class="my-auto">
@@ -34,9 +34,7 @@ const { title, content, imageNumber, badges } = Astro.props;
     image: NodeListOf<HTMLImageElement>;
     imageWrapper: NodeListOf<HTMLDivElement>;
     margin: string = "-20% 0px -80% 0px";
-    static desktopWidth = 1024;
     static desktopMargin = "-20% 0px -80% 0px";
-    static mobileMargin = "0px 0px -50% 0px";
     constructor() {
       super();
 
@@ -63,26 +61,21 @@ const { title, content, imageNumber, badges } = Astro.props;
         (entries) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) {
-              if (
-                window.innerWidth >= ProjectEntry.desktopWidth ||
-                this.imageNumber !== "0"
-              ) {
-                this.imageWrapper.forEach((imageWrapper) => {
-                  imageWrapper.classList.remove("opacity-100");
-                  imageWrapper.classList.add("opacity-0");
-                });
-              }
+              this.imageWrapper.forEach((imageWrapper) => {
+                imageWrapper.classList.remove("opacity-100");
+                imageWrapper.classList.add("opacity-0");
+              });
+
               this.image.forEach((image) => {
                 image.classList.remove("scale-100");
                 image.classList.add("scale-125");
               });
             } else {
-              if (window.innerWidth >= 1024 || this.imageNumber !== "0") {
-                this.imageWrapper.forEach((imageWrapper) => {
-                  imageWrapper.classList.add("opacity-100");
-                  imageWrapper.classList.remove("opacity-0");
-                });
-              }
+              this.imageWrapper.forEach((imageWrapper) => {
+                imageWrapper.classList.add("opacity-100");
+                imageWrapper.classList.remove("opacity-0");
+              });
+
               this.image.forEach((image) => {
                 image.classList.add("scale-100");
                 image.classList.remove("scale-125");
@@ -91,10 +84,7 @@ const { title, content, imageNumber, badges } = Astro.props;
           });
         },
         {
-          rootMargin:
-            window.innerWidth >= ProjectEntry.desktopWidth
-              ? ProjectEntry.desktopMargin
-              : ProjectEntry.mobileMargin,
+          rootMargin: ProjectEntry.desktopMargin,
         }
       );
 

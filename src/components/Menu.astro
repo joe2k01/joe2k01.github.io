@@ -21,7 +21,7 @@ import { Icon } from "astro-icon";
 
 <nav
   id="mobileNav"
-  class="fixed flex flex-col top-0 left-0 w-full fullscreen -translate-x-[150%] -translate-y-[150%] transition-transform duration-200 ease-in-out bg-cinnabar-600 z-50 p-2 justify-between"
+  class="fixed flex flex-col top-0 left-0 w-full fullscreen -translate-x-[150%] -translate-y-[150%] transition-transform duration-500 ease-in-out bg-cinnabar-600 z-50 p-2 justify-between"
 >
   <button class="self-end" id="closeMobileMenuBtn">
     <Icon name="mdi:close" class="w-8 h-8 text-cinnabar-50" />
@@ -89,7 +89,7 @@ import { Icon } from "astro-icon";
       });
     },
     {
-      rootMargin: "99999999% 0px -50% 0px",
+      rootMargin: "99999999% 0px 0px 0px",
     }
   );
   projectsObserver.observe(projects);
