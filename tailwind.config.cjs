@@ -41,6 +41,9 @@ module.exports = {
         baskerville: ["'Libre Baskerville'", "serif"],
         code: ["'Source Code Pro'", "monospace"],
       },
+      screens: {
+        "3xl": "2000px",
+      },
     },
   },
   plugins: [],

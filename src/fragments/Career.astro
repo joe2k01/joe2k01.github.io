@@ -2,20 +2,20 @@
 import CareerStep from "../components/CareerStep.astro";
 ---
 
-<div class="flex flex-col w-full overflow-x-hidden pt-20" id="career">
-  <h1 class="text-cinnabar-800 font-playfair font-extrabold text-6xl ml-10">
+<div class="flex flex-col w-full overflow-x-hidden pt-20 px-2 lg:px-10" id="career">
+  <h1 class="text-cinnabar-800 font-playfair font-extrabold lg:text-6xl text-4xl">
     Experience
   </h1>
 
   <div
-    class="grid grid-rows-5 grid-cols-11 p-10 gap-8"
+    class="grid grid-rows-5 grid-cols-8 md:grid-cols-11 py-2 md:py-4 lg:py-10 gap-8"
     id="careerGrid"
     data-parallax-weight="5"
   >
     <CareerStep
       company="Nouse"
       badgeText="Volunteering"
-      tw="row-start-1 lg:col-start-6 lg:col-span-6 col-span-11"
+      tw="row-start-1 md:col-start-6 md:col-span-6 col-span-8"
       year="2022/23"
       parallaxWeightLTR="3"
       descriptionTitle="Technical Director"
@@ -24,7 +24,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="S&P Global"
       badgeText="Internship"
-      tw="row-start-2 lg:col-start-7 lg:col-span-5 col-span-11"
+      tw="row-start-2 md:col-start-7 md:col-span-5 col-span-8"
       year="2023"
       parallaxWeightLTR="3"
       descriptionTitle="Software Developer Summer Intern"
@@ -33,7 +33,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="Sky"
       badgeText="Internship"
-      tw="row-start-3 lg:col-start-4 lg:col-span-4 col-span-11"
+      tw="row-start-3 md:col-start-4 md:col-span-4 col-span-8"
       year="2022"
       parallaxWeightLTR="2"
       descriptionTitle="Software Developer Summer Intern"
@@ -42,7 +42,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="TSYS"
       badgeText="Internship"
-      tw="row-start-4 lg:col-start-1 lg:col-span-4 col-span-11"
+      tw="row-start-4 md:col-start-1 md:col-span-4 col-span-8"
       year="2021"
       parallaxWeightLTR="1"
       descriptionTitle="DocOps Cloud Engineer Summer Intern"
@@ -51,7 +51,7 @@ import CareerStep from "../components/CareerStep.astro";
     <CareerStep
       company="ShockSoc"
       badgeText="Volunteering"
-      tw="row-start-5 lg:col-start-3 lg:col-span-9 col-span-11"
+      tw="row-start-5 md:col-start-3 md:col-span-9 col-span-8"
       year="2021/23"
       parallaxWeightLTR="4"
       descriptionTitle="Treasurer"

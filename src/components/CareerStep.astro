@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 
 const tw =
-  "justify-between py-2 px-4 flex flex-row rounded-full \
+  "justify-between py-2 lg:px-4 px-2 flex flex-row rounded-full \
   bg-cinnabar-400 drop-shadow-md transition-all duration-75 \
   ease origin-center lg:hover:scale-110 translate-x-0 translate-y-0 \
   lg:hover:bg-cinnabar-600 relative z-0 group";
@@ -44,7 +44,20 @@ const modalId = `${descriptionTitle.replaceAll(" ", "_")}_modal`;
     text={badgeText}
     tw="text-cinnabar-900 border-cinnabar-900 lg:group-hover:text-cinnabar-200 lg:group-hover:border-cinnabar-200"
   />
-  <ToolTip>
+  <ToolTip
+    tw1={(function () {
+      switch (company) {
+        case "S&P Global":
+          return "left-full -translate-x-full 2xl:left-1/2 2xl:-translate-x-1/2";
+        case "Nouse":
+          return "left-full -translate-x-full xl:left-1/2 xl:-translate-x-1/2";
+        case "TSYS":
+          return "left-0 translate-x-0 3xl:left-1/2 3xl:-translate-x-1/2";
+        default:
+          return "";
+      }
+    })()}
+  >
     <h1 class="text-cinnabar-600 font-baskerville text-xl font-semibold">
       {descriptionTitle}
     </h1>
