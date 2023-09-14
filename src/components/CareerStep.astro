@@ -1,6 +1,6 @@
 ---
 import Badge from "./Badge.astro";
-import MobileCareerStepModal from "./MobileCareerStepModal.astro";
+import Modal from "./Modal.astro";
 import ToolTip from "./ToolTip.astro";
 interface Props {
   badgeText: string;
@@ -51,8 +51,4 @@ const modalId = `${descriptionTitle.replaceAll(" ", "_")}_modal`;
     <p class="text-cinnabar-950 mt-4 max-w-prose text-justify">{description}</p>
   </ToolTip>
 </button>
-<MobileCareerStepModal
-  id={modalId}
-  title={descriptionTitle}
-  description={description}
-/>
+<Modal id={modalId} title={descriptionTitle} description={description} />

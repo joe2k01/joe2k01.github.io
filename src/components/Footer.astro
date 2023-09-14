@@ -1,15 +1,72 @@
 ---
 import { Icon } from "astro-icon";
+import ToolTip from "./ToolTip.astro";
+import Modal from "./Modal.astro";
+
+const modalId = "licenses_modal";
 ---
 
 <footer
   class="lg:text-lg font-bold flex flex-row items-center text-cinnabar-800 py-2 px-4 justify-between relative footer-border"
 >
-  <span class="font-code flex flex-col lg:flex-row lg:items-center max-w-[30%]"
+  <button
+    onclick=`(function(){if(window.innerWidth < 1024) document.getElementById("${modalId}").showModal()})()`
+    class="font-code flex flex-col lg:flex-row lg:items-center max-w-[30%] group relative"
     ><Icon name="mdi:copyright" class="w-8 h-8 inline" />2023 Giuseppe Barillari<span
-      class="whitespace-pre hidden lg:inline"
-    > &centerdot; </span><span class="whitespace-pre">Credits</span></span
-  >
+      class="whitespace-pre hidden lg:inline">&#32;&centerdot;&#32;</span
+    ><span class="whitespace-pre">Credits</span>
+    <ToolTip tw1="left-0 translate-x-0">
+      <ul class="text-cinnabar-500 font-code text-lg">
+        <li>
+          Gigante Mont'e Prama: <a
+            href="https://sketchfab.com/3d-models/gigante-monte-prama-be31bb4c0f8c406483d18369b7ea16df"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >eribertocaria</a
+          > -
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >LICENSE</a
+          > (Changed model position)
+        </li>
+        <li>
+          Noto Color Emoji Font: Google - <a
+            href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >LICENSE</a
+          >
+        </li>
+        <li>
+          Playfair Display Font: Claus Eggers Sørensen - <a
+            href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >LICENSE</a
+          >
+        </li>
+        <li>
+          Baskervville Font: ANRT - <a
+            href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >LICENSE</a
+          >
+        </li>
+        <li>
+          Roboto Font: Christian Robertson - <a
+            href="https://www.apache.org/licenses/LICENSE-2.0"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >LICENSE</a
+          >
+        </li>
+        <li>
+          Source Code Pro Font: Paul D. Hunt - <a
+            href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+            class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+            >LICENSE</a
+          >
+        </li>
+      </ul>
+    </ToolTip>
+  </button>
   <div class="font-code flex lg:flex-row flex-col items-center">
     <a
       class="lg:pr-6 lg:py-0 pb-2 hover:text-cinnabar-500 hover:line-through"
@@ -32,6 +89,62 @@ import { Icon } from "astro-icon";
     >
   </div>
 </footer>
+<Modal id={modalId} title="Credits">
+  <ul class="text-cinnabar-500 font-code">
+    <li>
+      Gigante Mont'e Prama: <a
+        href="https://sketchfab.com/3d-models/gigante-monte-prama-be31bb4c0f8c406483d18369b7ea16df"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >eribertocaria</a
+      > -
+      <a
+        href="https://creativecommons.org/licenses/by/4.0/"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >LICENSE</a
+      > (Changed model position)
+    </li>
+    <br />
+    <li>
+      Noto Color Emoji Font: Google - <a
+        href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >LICENSE</a
+      >
+    </li>
+    <br />
+    <li>
+      Playfair Display Font: Claus Eggers Sørensen - <a
+        href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >LICENSE</a
+      >
+    </li>
+    <br />
+    <li>
+      Baskervville Font: ANRT - <a
+        href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >LICENSE</a
+      >
+    </li>
+    <br />
+    <li>
+      Roboto Font: Christian Robertson - <a
+        href="https://www.apache.org/licenses/LICENSE-2.0"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >LICENSE</a
+      >
+    </li>
+    <br />
+    <li>
+      Source Code Pro Font: Paul D. Hunt - <a
+        href="https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL"
+        class="text-cinnabar-700 hover:text-cinnabar-600 hover:line-through"
+        >LICENSE</a
+      >
+    </li>
+  </ul>
+</Modal>
 
 <style>
   .footer-border::before {

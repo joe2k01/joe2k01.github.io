@@ -89,7 +89,7 @@ import CareerStep from "../components/CareerStep.astro";
       const xW = -(x - halfWidth) / halfWidth;
       const yW = -(y - halfHeight) / halfHeight;
 
-      steps.forEach((careerStepElement, i) => {
+      steps.forEach((careerStepElement) => {
         const careerStep = careerStepElement as HTMLElement;
         const pW = parseInt(careerStep.dataset.parallaxWeightLtr ?? "4");
 
@@ -108,6 +108,12 @@ import CareerStep from "../components/CareerStep.astro";
         }
         careerStep.style.setProperty("--tw-translate-x", `${lateral * 2}%`);
         careerStep.style.setProperty("--tw-translate-y", `${vertical * 10}%`);
+      });
+    } else {
+      steps.forEach((careerStepElement) => {
+        const careerStep = careerStepElement as HTMLElement;
+        careerStep.style.setProperty("--tw-translate-x", "0%");
+        careerStep.style.setProperty("--tw-translate-y", "0%");
       });
     }
   }

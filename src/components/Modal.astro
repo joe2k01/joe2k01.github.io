@@ -4,7 +4,7 @@ import { Icon } from "astro-icon";
 interface Props {
   id: string;
   title: string;
-  description: string;
+  description?: string;
 }
 
 const { id, title, description } = Astro.props;
@@ -12,7 +12,7 @@ const { id, title, description } = Astro.props;
 
 <dialog
   id={id}
-  class="p-4 rounded-md h-max m-4 bg-white bg-opacity-90 z-10 w-full shadow-md border-2 border-cinnabar-500 fixed top-1/2 left-0 -translate-y-1/2"
+  class="p-4 rounded-md h-max m-4 bg-white bg-opacity-70 z-10 w-full shadow-md border-2 border-cinnabar-500 fixed top-1/2 left-0 -translate-y-1/2 backdrop-blur-md"
 >
   <form>
     <h4 class="text-3xl flex flex-row items-center justify-between">
@@ -21,8 +21,14 @@ const { id, title, description } = Astro.props;
         <Icon name="mdi:close" class="w-8 h-8 text-cinnabar-500" />
       </button>
     </h4>
-    <p class="hyphens-auto mt-4 text-lg text-justify" lang="en">
-      {description}
-    </p>
+    {
+      description ? (
+        <p class="hyphens-auto mt-4 text-lg text-justify" lang="en">
+          {description}
+        </p>
+      ) : (
+        <slot />
+      )
+    }
   </form>
 </dialog>

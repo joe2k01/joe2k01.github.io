@@ -1,7 +1,30 @@
+---
+interface Props {
+  tw1?: string;
+  tw2?: string;
+}
+
+const { tw1 = "", tw2 = "" } = Astro.props;
+---
+
 <div
-  class="hidden lg:block opacity-0 scale-50 group-hover:scale-100 lg:group-hover:opacity-100 absolute top-0 -translate-y-1/2 group-hover:-translate-y-full left-1/2 -translate-x-1/2 pb-2 z-50 w-max transition-transform duration-150 ease-in-out"
+  class={`outer-tooltip lg:group-hover:scale-100 lg:group-hover:opacity-100 lg:group-hover:-translate-y-full ${tw1}`}
 >
-  <div class="rounded-md flex flex-col bg-white bg-opacity-90 p-4 shadow-md border-2 border-cinnabar-500">
+  <div
+    class={`${tw2} rounded-md flex flex-col bg-white bg-opacity-90 p-4 shadow-md border-2 border-cinnabar-500`}
+  >
     <slot />
   </div>
 </div>
+
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  @layer components {
+    .outer-tooltip {
+      @apply hidden lg:block opacity-0 scale-50  absolute top-0 -translate-y-1/2  left-1/2 -translate-x-1/2 pb-2 z-50 w-max transition-transform duration-150 ease-in-out;
+    }
+  }
+</style>
