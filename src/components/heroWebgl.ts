@@ -1,7 +1,7 @@
 import { AmbientLight, HemisphereLight, PointLight } from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { WebGLAbstract } from "./webGLAbstract";
-import { SCREEN_MD } from "./screenCostants";
+import { SCREEN_LG, SCREEN_MD } from "./screenCostants";
 
 export class HeroWebGL extends WebGLAbstract {
   private gltfLoader: GLTFLoader;
@@ -61,14 +61,16 @@ export class HeroWebGL extends WebGLAbstract {
   interact() {
     // Track mouse so that gigante can look at it
     this.wrapper.addEventListener("mousemove", (ev) => {
-      const pageX = ev.pageX;
-      const pageY = ev.pageY;
+      if (window.innerWidth > SCREEN_LG) {
+        const pageX = ev.pageX;
+        const pageY = ev.pageY;
 
-      const renderX = -1 + 2 * (pageX / this.canvas.scrollWidth);
-      const renderY = -1 + 2 * (pageY / this.canvas.scrollHeight);
+        const renderX = -1 + 2 * (pageX / this.canvas.scrollWidth);
+        const renderY = -1 + 2 * (pageY / this.canvas.scrollHeight);
 
-      this.mousePos.x = renderX;
-      this.mousePos.y = renderY;
+        this.mousePos.x = renderX;
+        this.mousePos.y = renderY;
+      }
     });
   }
 

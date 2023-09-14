@@ -86,15 +86,17 @@ export class ContactWebGL extends WebGLAbstract {
 
   private interact() {
     this.contact.addEventListener("mousemove", (ev) => {
-      const rect = this.contact.getBoundingClientRect();
-      const pageX = ev.clientX - rect.left;
-      const pageY = ev.clientY - rect.top;
+      if (window.innerWidth > SCREEN_LG) {
+        const rect = this.contact.getBoundingClientRect();
+        const pageX = ev.clientX - rect.left;
+        const pageY = ev.clientY - rect.top;
 
-      const renderX = -1 + 2 * (pageX / this.contact.scrollWidth);
-      const renderY = -1 + 2 * (pageY / this.contact.scrollHeight);
+        const renderX = -1 + 2 * (pageX / this.contact.scrollWidth);
+        const renderY = -1 + 2 * (pageY / this.contact.scrollHeight);
 
-      this.mousePos.x = renderX;
-      this.mousePos.y = renderY;
+        this.mousePos.x = renderX;
+        this.mousePos.y = renderY;
+      }
     });
   }
 
