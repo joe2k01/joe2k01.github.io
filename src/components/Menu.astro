@@ -3,7 +3,7 @@ import { Icon } from "astro-icon";
 ---
 
 <nav
-  class="fixed bottom-16 right-0 z-50 flex flex-row justify-between items-center nav-desktop rounded-l-full px-4 bg-cinnabar-400 font-playfair font-bold text-xl text-cinnabar-950"
+  class="hidden lg:flex fixed bottom-16 right-0 z-50 flex-row justify-between items-center nav-desktop rounded-l-full px-4 bg-cinnabar-400 font-playfair font-bold text-xl text-cinnabar-950"
 >
   <Icon name="jam:menu" class="w-10 h-10" />
   <a href="#hero_fragment" class="px-2 hover:line-through">Home</a>
@@ -11,6 +11,38 @@ import { Icon } from "astro-icon";
   <a href="#about" class="px-2 hover:line-through">About</a>
   <a href="#career" class="px-2 hover:line-through">Experience</a>
   <a href="#contact" class="px-2 hover:line-through">Contact</a>
+</nav>
+
+<button
+  id="openMobileMenuBtn"
+  class="fixed lg:hidden bottom-4 right-4 rounded-md p-2 z-20 bg-cinnabar-400 text-cinnabar-950 translate-x-[150%] translate-y-[150%] transition-transform duration-150 ease-in-out border-2 border-cinnabar-950"
+  ><Icon name="jam:menu" class="w-8 h-8" /></button
+>
+
+<nav
+  id="mobileNav"
+  class="fixed flex flex-col top-0 left-0 w-full fullscreen -translate-x-[150%] -translate-y-[150%] transition-transform duration-200 ease-in-out bg-cinnabar-600 z-50 p-2 justify-between"
+>
+  <button class="self-end" id="closeMobileMenuBtn">
+    <Icon name="mdi:close" class="w-8 h-8 text-cinnabar-50" />
+  </button>
+  <ul class="text-cinnabar-50 font-baskerville font-bold text-lg">
+    <li class="py-4">
+      <a href="#hero_fragment" class="px-2 hover:line-through">Home</a>
+    </li>
+    <li class="py-4">
+      <a href="#projects_fragment" class="px-2 hover:line-through">Projects</a>
+    </li>
+    <li class="py-4">
+      <a href="#about" class="px-2 hover:line-through">About</a>
+    </li>
+    <li class="py-4">
+      <a href="#career" class="px-2 hover:line-through">Experience</a>
+    </li>
+    <li class="py-4">
+      <a href="#contact" class="px-2 hover:line-through">Contact</a>
+    </li>
+  </ul>
 </nav>
 
 <style>
@@ -23,3 +55,77 @@ import { Icon } from "astro-icon";
     transform: translate3d(0, 0, 0);
   }
 </style>
+
+<script>
+  const projects = document.getElementById(
+    "projects_fragment"
+  ) as HTMLDivElement;
+  const openMenuButton = document.getElementById(
+    "openMobileMenuBtn"
+  ) as HTMLButtonElement;
+  const closeMenuButton = document.getElementById(
+    "closeMobileMenuBtn"
+  ) as HTMLButtonElement;
+  const mobileNav = document.getElementById("mobileNav") as HTMLElement;
+  const mobileLinks = mobileNav.querySelectorAll(
+    ":scope > ul > li > a"
+  ) as NodeListOf<HTMLAnchorElement>;
+  const footer = document.querySelector("footer") as HTMLElement;
+
+  const projectsObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          openMenuButton.classList.remove(
+            "translate-x-[150%]",
+            "translate-y-[150%]"
+          );
+        } else {
+          openMenuButton.classList.add(
+            "translate-x-[150%]",
+            "translate-y-[150%]"
+          );
+        }
+      });
+    },
+    {
+      rootMargin: "99999999% 0px -50% 0px",
+    }
+  );
+  projectsObserver.observe(projects);
+
+  const footerObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        openMenuButton.classList.add(
+          "translate-x-[150%]",
+          "translate-y-[150%]"
+        );
+      } else {
+        openMenuButton.classList.remove(
+          "translate-x-[150%]",
+          "translate-y-[150%]"
+        );
+      }
+    });
+  });
+  footerObserver.observe(footer);
+
+  function closeMobileMenu() {
+    mobileNav.classList.add("-translate-x-[150%]", "-translate-y-[150%]");
+  }
+
+  openMenuButton.addEventListener("click", () => {
+    mobileNav.classList.remove("-translate-x-[150%]", "-translate-y-[150%]");
+  });
+
+  closeMenuButton.addEventListener("click", () => {
+    closeMobileMenu();
+  });
+
+  mobileLinks.forEach((mobileLink) => {
+    mobileLink.addEventListener("click", () => {
+      closeMobileMenu();
+    });
+  });
+</script>
