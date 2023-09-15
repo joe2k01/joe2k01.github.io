@@ -1,13 +1,15 @@
 ---
+import { Icon } from "astro-icon";
 import Badge from "./Badge.astro";
 interface Props {
   title: string;
   content: string;
   imageURL: string;
   badges: string[];
+  link: string;
 }
 
-const { title, content, imageURL, badges } = Astro.props;
+const { title, content, imageURL, badges, link } = Astro.props;
 ---
 
 <div class="w-full flex flex-col project py-4">
@@ -15,9 +17,15 @@ const { title, content, imageURL, badges } = Astro.props;
     class="w-full sm:w-3/4 mx-auto aspect-video shadow-xl rounded-lg object-cover"
     src={imageURL}
   />
-
   <h2 class="text-3xl font-playfair font-bold text-cinnabar-700 mt-2">
-    {title}
+    {title}<a
+      class="inline"
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Icon name="mdi:open-in-new" class="w-8 h-9 inline" />
+    </a>
   </h2>
   <div class="flex flex-row flex-wrap mt-4">
     {badges.map((badge) => <Badge text={badge} tw="my-1" />)}

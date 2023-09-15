@@ -2,16 +2,24 @@
 interface Props {
   src: string;
   imageNumber: number;
+  link: string;
 }
 
-const { src, imageNumber } = Astro.props;
+const { src, imageNumber, link } = Astro.props;
 ---
 
 <div
-  class=`absolute w-full aspect-video rounded-lg shadow-xl opacity-100 -translate-y-1/2 top-0 top-1/2 overflow-hidden transition-opacity ease-linear duration-300 project-image-wrapper-${imageNumber} z-${imageNumber}`
+  class=`absolute w-full aspect-video rounded-lg shadow-xl opacity-100 -translate-y-1/2 top-0 top-1/2 overflow-hidden transition-opacity ease-linear duration-300 project-image-wrapper-${imageNumber}`
 >
-  <img
-    class=`w-full aspect-video object-cover transition-transform scale-100 ease-linear duration-300 project-image-${imageNumber}`
-    src={src}
-  />
+  <a
+    href={link}
+    class="pointer-events-none"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    <img
+      class=`w-full aspect-video object-cover transition-transform scale-100 ease-linear duration-300 project-image-${imageNumber}`
+      src={src}
+    />
+  </a>
 </div>

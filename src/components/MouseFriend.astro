@@ -1,0 +1,157 @@
+---
+import { Icon } from "astro-icon";
+---
+
+<div class="mouse-friend" id="mouse-friend" data-link="https://nouse.co.uk/">
+  <span
+    id="nameWrapper"
+    class="font-code relative name transition-transform duration-150 ease-in"
+  >
+    <span class="whitespace-pre">&#32;</span>
+    <span>G</span>
+    <span>I</span>
+    <span>U</span>
+    <span>S</span>
+    <span>E</span>
+    <span>P</span>
+    <span>P</span>
+    <span>E</span>
+    <span class="whitespace-pre">&#32;</span>
+    <span>&centerdot;</span>
+    <span class="whitespace-pre">&#32;</span>
+    <span>B</span>
+    <span>A</span>
+    <span>R</span>
+    <span>I</span>
+    <span>L</span>
+    <span>L</span>
+    <span>A</span>
+    <span>R</span>
+    <span>I</span>
+    <span class="whitespace-pre">&#32;</span>
+    <span>&centerdot;</span>
+  </span>
+  <span class="link-icon">
+    <Icon name="mdi:open-in-new" class="w-12 h-12 m-auto bg-opacity-100" />
+  </span>
+</div>
+<style>
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+
+  .name {
+    animation: rotate 5s linear infinite;
+  }
+  .name > span {
+    @apply inline-block absolute top-1/2 left-1/2;
+  }
+
+  @keyframes rotate {
+    to {
+      rotate: -360deg;
+    }
+  }
+
+  @layer components {
+    .mouse-friend {
+      @apply fixed hidden lg:flex z-[100] translate-x-0 translate-y-0 top-0 left-0 transition-all duration-200 ease-out pointer-events-none;
+    }
+
+    .mouse-friend .link-icon {
+      @apply hidden lg:flex w-20 h-20 rounded-full m-auto absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 transition-all duration-150 ease-in;
+    }
+  }
+
+  .in-image .name {
+    @apply scale-0;
+  }
+
+  .in-image .link-icon {
+    @apply scale-100;
+  }
+
+  .in-image[data-link="nouse"] .link-icon {
+    @apply bg-sazerac-100 text-sazerac-700;
+  }
+
+  .in-image[data-link="shocksoc"] .link-icon {
+    @apply bg-cinnabar-100 text-cinnabar-700;
+  }
+</style>
+
+<script>
+  import type { UpdateLinkEvent } from "./updateLinkEvent";
+  declare global {
+    interface WindowEventMap {
+      updatelink: UpdateLinkEvent;
+    }
+  }
+
+  const mouseFriend = document.getElementById("mouse-friend") as HTMLDivElement;
+  const nameWrapper = document.getElementById("nameWrapper") as HTMLSpanElement;
+  const letters = nameWrapper.querySelectorAll(
+    ":scope > span"
+  ) as NodeListOf<HTMLSpanElement>;
+  const letterRotation = 360 / letters.length;
+
+  window.addEventListener("mousemove", (ev) => {
+    mouseFriend.style.setProperty("--tw-translate-x", `${ev.clientX}px`);
+    mouseFriend.style.setProperty("--tw-translate-y", `${ev.clientY}px`);
+  });
+
+  letters.forEach((letter, i) => {
+    letter.style.transform = `translate(-50%, -50%) rotate(${
+      letterRotation * i
+    }deg) translateY(-5ch)`;
+    letter.classList.remove();
+  });
+
+  // Intersections
+  const hero = document.getElementById("hero_fragment") as HTMLDivElement;
+  const projects = document.getElementById(
+    "projects_fragment"
+  ) as HTMLDivElement;
+  hero.dataset.pointerColor = "text-cinnabar-50";
+  projects.dataset.pointerColor = "text-zinc-950";
+
+  // Change text color when other div comes into screen
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentColor = mouseFriend.dataset.color;
+          if (currentColor) mouseFriend.classList.remove(currentColor);
+
+          mouseFriend.dataset.color = (
+            entry.target as HTMLElement
+          ).dataset.pointerColor;
+          mouseFriend.classList.add(mouseFriend.dataset.color!);
+        }
+      });
+    },
+    {
+      rootMargin: "0px 0px -100% 0px",
+    }
+  );
+  observer.observe(hero);
+  observer.observe(projects);
+
+  // Projects links handling
+  window.addEventListener("updatelink", (ev) => {
+    mouseFriend.dataset.link = ev.activeImage === "0" ? "nouse" : "shocksoc";
+  });
+
+  const images = document.querySelectorAll(
+    "[class*='project-image-wrapper']"
+  ) as NodeListOf<HTMLAnchorElement>;
+
+  images.forEach((image) => {
+    image.addEventListener("mouseover", () => {
+      mouseFriend.classList.add("in-image");
+    });
+    image.addEventListener("mouseout", () => {
+      mouseFriend.classList.remove("in-image");
+    });
+  });
+</script>

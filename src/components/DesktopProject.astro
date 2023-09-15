@@ -10,10 +10,7 @@ interface Props {
 const { title, content, imageNumber, badges } = Astro.props;
 ---
 
-<project-entry
-  class="w-2/3 h-screen flex flex-col"
-  data-image={imageNumber}
->
+<project-entry class="w-2/3 h-screen flex flex-col" data-image={imageNumber}>
   <div class="my-auto">
     <h2 class="text-3xl lg:text-5xl font-playfair font-bold text-cinnabar-700">
       {title}
@@ -28,25 +25,34 @@ const { title, content, imageNumber, badges } = Astro.props;
 </project-entry>
 
 <script>
+  import { UpdateLinkEvent } from "./updateLinkEvent";
+  const updateLinkEvent = new UpdateLinkEvent("0", {
+    bubbles: false,
+    cancelable: false,
+  });
   class ProjectEntry extends HTMLElement {
     observer: IntersectionObserver | undefined;
     imageNumber: string;
-    image: NodeListOf<HTMLImageElement>;
-    imageWrapper: NodeListOf<HTMLDivElement>;
-    margin: string = "-20% 0px -80% 0px";
+    image: HTMLImageElement;
+    imageWrapper: HTMLDivElement;
+    link: HTMLAnchorElement;
     static desktopMargin = "-20% 0px -80% 0px";
     constructor() {
       super();
 
       this.imageNumber = this.dataset.image ?? "0";
 
-      this.imageWrapper = document.querySelectorAll(
+      this.imageWrapper = document.querySelector(
         `.project-image-wrapper-${this.imageNumber}`
-      ) as NodeListOf<HTMLDivElement>;
+      ) as HTMLDivElement;
 
-      this.image = document.querySelectorAll(
+      this.link = this.imageWrapper.querySelector(
+        ":scope > a"
+      ) as HTMLAnchorElement;
+
+      this.image = document.querySelector(
         `.project-image-${this.imageNumber}`
-      ) as NodeListOf<HTMLImageElement>;
+      ) as HTMLImageElement;
 
       this.setUpObserver();
 
@@ -61,25 +67,26 @@ const { title, content, imageNumber, badges } = Astro.props;
         (entries) => {
           entries.forEach((entry) => {
             if (!entry.isIntersecting) {
-              this.imageWrapper.forEach((imageWrapper) => {
-                imageWrapper.classList.remove("opacity-100");
-                imageWrapper.classList.add("opacity-0");
-              });
+              this.imageWrapper.classList.remove("opacity-100");
+              this.imageWrapper.classList.remove("z-1");
+              this.imageWrapper.classList.add("opacity-0");
 
-              this.image.forEach((image) => {
-                image.classList.remove("scale-100");
-                image.classList.add("scale-125");
-              });
+              this.image.classList.remove("scale-100");
+              this.image.classList.add("scale-125");
+
+              this.link.classList.add("pointer-events-none");
             } else {
-              this.imageWrapper.forEach((imageWrapper) => {
-                imageWrapper.classList.add("opacity-100");
-                imageWrapper.classList.remove("opacity-0");
-              });
+              this.imageWrapper.classList.add("opacity-100");
+              this.imageWrapper.classList.add("z-1");
+              this.imageWrapper.classList.remove("opacity-0");
 
-              this.image.forEach((image) => {
-                image.classList.add("scale-100");
-                image.classList.remove("scale-125");
-              });
+              this.image.classList.add("scale-100");
+              this.image.classList.remove("scale-125");
+
+              this.link.classList.remove("pointer-events-none");
+
+              updateLinkEvent.activeImage = this.imageNumber;
+              window.dispatchEvent(updateLinkEvent);
             }
           });
         },
