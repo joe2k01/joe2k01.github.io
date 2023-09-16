@@ -7,14 +7,16 @@ const modalId = "licenses_modal";
 ---
 
 <footer
-  class="lg:text-lg font-bold flex flex-row items-center text-cinnabar-800 py-2 px-4 justify-between relative footer-border"
+  class="font-bold flex flex-row items-center text-cinnabar-800 py-2 px-4 justify-between relative footer-border"
 >
   <button
     onclick=`(function(){if(window.innerWidth < 1024) document.getElementById("${modalId}").showModal()})()`
-    class="font-code flex flex-col lg:flex-row lg:items-center max-w-[30%] group relative"
-    ><Icon name="mdi:copyright" class="w-8 h-8 inline" />2023 Giuseppe Barillari<span
+    class="text-lg lg:text-[0.8rem] 2xl:text-lg font-code flex flex-col lg:flex-row text-center lg:text-left lg:items-center max-w-[30%] group relative inhe"
+    ><span class="w-full lg:w-max"
+      ><Icon name="mdi:copyright" class="w-8 h-8 inline" /></span
+    ><span class="w-full lg:w-auto">2023 Giuseppe Barillari</span><span
       class="whitespace-pre hidden lg:inline">&#32;&centerdot;&#32;</span
-    ><span class="whitespace-pre">Credits</span>
+    ><span class="whitespace-pre w-full lg:w-auto">Credits</span>
     <ToolTip tw1="left-0 translate-x-0">
       <ul class="text-cinnabar-500 font-code text-lg text-left">
         <li>

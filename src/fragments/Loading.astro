@@ -70,6 +70,9 @@
     );
 
     if (ev.progress === 100) {
+      // Scroll to page top
+      window.scrollTo(0, 0)
+
       name.style.backgroundPosition = `0% 100%`;
       progressBar.style.setProperty("--tw-scale-x", "1");
       loading.style.animation = "loaded-bg 2s 1s ease forwards";
