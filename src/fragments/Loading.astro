@@ -1,9 +1,9 @@
 <div
-  class="fixed flex top-0 left-0 bottom-0 right-0 bg-red-600 z-[500]"
+  class="fixed grid justify-center items-center top-0 left-0 bottom-0 right-0 bg-red-600 z-[500]"
   id="loading"
 >
   <h1
-    class="relative text-center m-auto w-max font-baskerville text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl sm:p-2 font-extrabold text-transparent bg-clip-text loading-name"
+    class="relative text-center w-max font-baskerville text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl sm:p-4 font-extrabold text-transparent bg-clip-text loading-name"
   >
     Giuseppe Barillari
     <div
@@ -71,7 +71,7 @@
 
     if (ev.progress === 100) {
       // Scroll to page top
-      window.scrollTo(0, 0)
+      window.scrollTo(0, 0);
 
       name.style.backgroundPosition = `0% 100%`;
       progressBar.style.setProperty("--tw-scale-x", "1");
