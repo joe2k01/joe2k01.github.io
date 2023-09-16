@@ -36,7 +36,7 @@ export class HeroWebGL extends WebGLAbstract {
 
   createScene() {
     // Load Gigante model
-    this.gltfLoader.load("/gigante-monte-prama/untitled.glb", (gltf) => {
+    this.gltfLoader.load("/gigante-monte-prama/gigante.glb", (gltf) => {
       this.gigante = gltf.scene;
       this.gigante.scale.set(30, 30, 30);
 

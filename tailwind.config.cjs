@@ -43,6 +43,12 @@ module.exports = {
       },
       screens: {
         "3xl": "2000px",
+        "h-sm": {
+          raw: "screen and (max-width: 1024px), screen and (max-height: 700px)",
+        },
+        "h-xs": {
+          raw: "screen and (max-width: 1024px), screen and (max-height: 440px)",
+        },
       },
     },
   },
