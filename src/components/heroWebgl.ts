@@ -1,4 +1,10 @@
-import { AmbientLight, Group, HemisphereLight, PointLight } from "three";
+import {
+  AmbientLight,
+  Group,
+  HemisphereLight,
+  LoadingManager,
+  PointLight,
+} from "three";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { SCREEN_LG, SCREEN_MD } from "./screenCostants";
 import { WebGLAbstract } from "./webGLAbstract";
@@ -13,13 +19,13 @@ export class HeroWebGL extends WebGLAbstract {
     lightB: PointLight | null;
   } = { lightA: null, lightB: null };
 
-  constructor() {
+  constructor(loadingManager: LoadingManager) {
     const canvas = document.getElementById("webgl") as HTMLCanvasElement;
     const hero = document.getElementById("hero_fragment") as HTMLDivElement;
 
-    super(canvas, hero);
+    super(canvas, hero, loadingManager);
 
-    this.gltfLoader = new GLTFLoader();
+    this.gltfLoader = new GLTFLoader(this.loadingManager);
 
     // Create scene
     this.createScene();
@@ -30,37 +36,16 @@ export class HeroWebGL extends WebGLAbstract {
 
   createScene() {
     // Load Gigante model
-    this.gltfLoader.load(
-      "/gigante-monte-prama/untitled.glb",
-      (gltf) => {
-        this.gigante = gltf.scene;
-        this.gigante.scale.set(30, 30, 30);
+    this.gltfLoader.load("/gigante-monte-prama/untitled.glb", (gltf) => {
+      this.gigante = gltf.scene;
+      this.gigante.scale.set(30, 30, 30);
 
-        // Add gigante to scene
-        this.scene.add(this.gigante);
+      // Add gigante to scene
+      this.scene.add(this.gigante);
 
-        // Dispatch fully loaded event
-        const lastChildInModel =
-          this.gigante.children[this.gigante.children.length - 1];
-        lastChildInModel.onAfterRender = () => {
-          this.loadingEvent.giganteProgress = 100;
-          window.dispatchEvent(this.loadingEvent);
-          lastChildInModel.onAfterRender = () => {};
-        };
-
-        this.renderer.render(this.scene, this.camera);
-      },
-      (ev) => {
-        // -1 so we can send 100 when fully loaded
-        this.loadingEvent.giganteProgress = (ev.loaded / ev.total) * 100 - 1;
-        window.dispatchEvent(this.loadingEvent);
-      },
-      (ev) => {
-        console.error(ev);
-        this.loadingEvent.giganteProgress = 100;
-        window.dispatchEvent(this.loadingEvent);
-      }
-    );
+      // Render scene before completing loading
+      this.renderer.render(this.scene, this.camera);
+    });
 
     // Lights
     const ambientLight = new AmbientLight(0xffffff, 0.5);

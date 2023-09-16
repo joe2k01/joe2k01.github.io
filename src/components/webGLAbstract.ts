@@ -1,14 +1,15 @@
-import { PerspectiveCamera, Scene, WebGLRenderer } from "three";
+import { LoadingManager, PerspectiveCamera, Scene, WebGLRenderer } from "three";
 import { THREELoadingEvent } from "./loadingEvent";
 
 export abstract class WebGLAbstract {
   protected canvas: HTMLCanvasElement;
   protected wrapper: HTMLElement;
 
-  protected camera: THREE.PerspectiveCamera;
-  protected renderer: THREE.WebGLRenderer;
-  protected scene: THREE.Scene;
+  protected camera: PerspectiveCamera;
+  protected renderer: WebGLRenderer;
+  protected scene: Scene;
 
+  protected loadingManager: LoadingManager;
   protected loadingEvent: THREELoadingEvent;
 
   protected mousePos = {
@@ -18,9 +19,14 @@ export abstract class WebGLAbstract {
 
   private dimensions = { width: 0, height: 0 };
 
-  constructor(canvas: HTMLCanvasElement, wrapper: HTMLElement) {
+  constructor(
+    canvas: HTMLCanvasElement,
+    wrapper: HTMLElement,
+    loadingManager: LoadingManager
+  ) {
     this.canvas = canvas;
     this.wrapper = wrapper;
+    this.loadingManager = loadingManager;
 
     // Initialise event
     this.loadingEvent = new THREELoadingEvent({

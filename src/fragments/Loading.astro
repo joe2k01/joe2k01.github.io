@@ -63,21 +63,13 @@
   // Block scroll
   document.body.classList.add("overflow-y-hidden");
 
-  let giganteProgress = 0;
-  let nameProgress = 0;
-  // Listen to loading event
-  window.addEventListener("threeloading", (ev) => {
-    if (giganteProgress !== 100)
-      giganteProgress += ev.giganteProgress - giganteProgress;
-    if (nameProgress !== 100) nameProgress += ev.nameProgress - nameProgress;
-    const totalProgress = (giganteProgress + nameProgress) / 2;
-
+  function handleLoad(ev: THREELoadingEvent) {
     progressBar.style.setProperty(
       "--tw-scale-x",
-      ((totalProgress - 10) / 100).toString()
+      ((ev.progress - 10) / 100).toString()
     );
 
-    if (totalProgress === 100) {
+    if (ev.progress === 100) {
       name.style.backgroundPosition = `0% 100%`;
       progressBar.style.setProperty("--tw-scale-x", "1");
       loading.style.animation = "loaded-bg 2s 1s ease forwards";
@@ -91,5 +83,8 @@
         loading.classList.add("hidden");
       });
     }
-  });
+  }
+
+  // Listen to loading event
+  window.addEventListener("threeloading", handleLoad);
 </script>

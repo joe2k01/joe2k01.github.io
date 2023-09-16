@@ -1,4 +1,4 @@
-import { Mesh, MeshMatcapMaterial, TextureLoader } from "three";
+import { LoadingManager, Mesh, MeshMatcapMaterial, TextureLoader } from "three";
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry";
 import { Font, FontLoader } from "three/examples/jsm/loaders/FontLoader";
 import { SCREEN_LG } from "./screenCostants";
@@ -13,13 +13,13 @@ export class ContactWebGL extends WebGLAbstract {
 
   private contact: HTMLDivElement;
 
-  constructor() {
+  constructor(loadingManager: LoadingManager) {
     const canvas = document.getElementById("contactWebgl") as HTMLCanvasElement;
     const wrapper = document.getElementById(
       "contactCanvasWrapper"
     ) as HTMLAnchorElement;
 
-    super(canvas, wrapper);
+    super(canvas, wrapper, loadingManager);
 
     this.contact = document.getElementById("contact") as HTMLDivElement;
 
@@ -27,9 +27,9 @@ export class ContactWebGL extends WebGLAbstract {
     this.event = new Event("contactContentLoad");
 
     // Create font loader
-    this.fontLoader = new FontLoader();
+    this.fontLoader = new FontLoader(this.loadingManager);
     // Create texture loader
-    this.textureLoader = new TextureLoader();
+    this.textureLoader = new TextureLoader(this.loadingManager);
 
     // Create scene
     this.createScene();
@@ -52,57 +52,17 @@ export class ContactWebGL extends WebGLAbstract {
 
     // Load font
     var font: Font | null = null;
-    this.fontLoader.load(
-      "/source_code_pro_medium.json",
-      (loadedFont) => {
-        font = loadedFont;
-        this.canvas.dispatchEvent(this.event);
-      },
-      (ev) => {
-        fontLoadingEvent = ev;
-
-        let total = fontLoadingEvent.total;
-        if (matcapLoadingEvent) total += matcapLoadingEvent.total;
-
-        let loaded = fontLoadingEvent.loaded;
-        if (matcapLoadingEvent) loaded += matcapLoadingEvent.loaded;
-
-        this.loadingEvent.nameProgress = (loaded / total) * 100;
-        window.dispatchEvent(this.loadingEvent);
-      },
-      (ev) => {
-        console.error(ev);
-        this.loadingEvent.nameProgress = 100;
-        window.dispatchEvent(this.loadingEvent);
-      }
-    );
+    this.fontLoader.load("/source_code_pro_medium.json", (loadedFont) => {
+      font = loadedFont;
+      this.canvas.dispatchEvent(this.event);
+    });
 
     // Load matcap
     var matcap: THREE.Texture | null = null;
-    this.textureLoader.load(
-      "/matcap2.png",
-      (loadedMatcap) => {
-        matcap = loadedMatcap;
-        this.canvas.dispatchEvent(this.event);
-      },
-      (ev) => {
-        matcapLoadingEvent = ev;
-
-        let total = matcapLoadingEvent.total;
-        if (fontLoadingEvent) total += fontLoadingEvent.total;
-
-        let loaded = matcapLoadingEvent.loaded;
-        if (fontLoadingEvent) loaded += fontLoadingEvent.loaded;
-
-        this.loadingEvent.nameProgress = (loaded / total) * 100;
-        window.dispatchEvent(this.loadingEvent);
-      },
-      (ev) => {
-        console.error(ev);
-        this.loadingEvent.nameProgress = 100;
-        window.dispatchEvent(this.loadingEvent);
-      }
-    );
+    this.textureLoader.load("/matcap2.png", (loadedMatcap) => {
+      matcap = loadedMatcap;
+      this.canvas.dispatchEvent(this.event);
+    });
 
     this.canvas.addEventListener("contactContentLoad", () => {
       if (font && matcap) {

@@ -1,10 +1,8 @@
 export class THREELoadingEvent extends Event {
-  giganteProgress: number;
-  nameProgress: number;
+  progress: number;
 
   constructor(eventInitDict: EventInit) {
     super("threeloading", eventInitDict);
-    this.giganteProgress = 0;
-    this.nameProgress = 0;
+    this.progress = 0;
   }
 }
