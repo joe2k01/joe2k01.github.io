@@ -3,6 +3,7 @@ import Footer from "../components/Footer.astro";
 import Menu from "../components/Menu.astro";
 import BlobBackground from "../components/BlobBackground.astro";
 import MouseFriend from "../components/MouseFriend.astro";
+import Loading from "../fragments/Loading.astro";
 ---
 
 <!DOCTYPE html>
@@ -23,6 +24,7 @@ import MouseFriend from "../components/MouseFriend.astro";
     />
   </head>
   <body class="font-roboto overflow-x-hidden">
+    <Loading />
     <MouseFriend />
     <Menu />
     <slot />

@@ -1,0 +1,95 @@
+<div
+  class="fixed flex top-0 left-0 bottom-0 right-0 bg-red-600 z-[500]"
+  id="loading"
+>
+  <h1
+    class="relative text-center m-auto w-max font-baskerville text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-9xl sm:p-2 font-extrabold text-transparent bg-clip-text loading-name"
+  >
+    Giuseppe Barillari
+    <div
+      class="absolute h-1 w-full bg-cinnabar-50 bg-opacity-30 -bottom-2 left-0 rounded-full transition-transform duration-500 ease scale-x-0"
+    >
+    </div>
+  </h1>
+</div>
+<style>
+  .loading-name {
+    background-image: linear-gradient(
+      to bottom,
+      theme(colors.cinnabar.600),
+      theme(colors.cinnabar.50)
+    );
+    background-size: 200% 200%;
+    background-position: 0% -100%;
+    background-repeat: no-repeat;
+    -webkit-text-stroke: 1px theme(colors.cinnabar.50);
+
+    transition: background-position 1s ease;
+    animation: none;
+  }
+
+  @keyframes loaded-bg {
+    0% {
+      opacity: 1;
+      background-color: theme(colors.cinnabar.500);
+    }
+    100% {
+      opacity: 0;
+      background-color: theme(colors.transparent);
+    }
+  }
+  @keyframes loaded-name {
+    0% {
+      transform: translateY(0) scale(1, 1);
+    }
+    100% {
+      transform: translateY(50%) scale(0.8, 0.8);
+    }
+  }
+</style>
+<script>
+  import type { THREELoadingEvent } from "../components/loadingEvent";
+
+  declare global {
+    interface WindowEventMap {
+      threeloading: THREELoadingEvent;
+    }
+  }
+
+  const loading = document.getElementById("loading") as HTMLDivElement;
+  const name = loading.querySelector(":scope > h1") as HTMLHeadingElement;
+  const progressBar = name.querySelector(":scope > div") as HTMLDivElement;
+
+  // Block scroll
+  document.body.classList.add("overflow-y-hidden");
+
+  let giganteProgress = 0;
+  let nameProgress = 0;
+  // Listen to loading event
+  window.addEventListener("threeloading", (ev) => {
+    if (giganteProgress !== 100)
+      giganteProgress += ev.giganteProgress - giganteProgress;
+    if (nameProgress !== 100) nameProgress += ev.nameProgress - nameProgress;
+    const totalProgress = (giganteProgress + nameProgress) / 2;
+
+    progressBar.style.setProperty(
+      "--tw-scale-x",
+      ((totalProgress - 10) / 100).toString()
+    );
+
+    if (totalProgress === 100) {
+      name.style.backgroundPosition = `0% 100%`;
+      progressBar.style.setProperty("--tw-scale-x", "1");
+      loading.style.animation = "loaded-bg 2s 1s ease forwards";
+      name.style.animation = "loaded-name 2s 1s ease forwards";
+
+      name.addEventListener("animationend", () => {
+        // Enable scroll
+        document.body.classList.remove("overflow-y-hidden");
+
+        // Remove loading
+        loading.classList.add("hidden");
+      });
+    }
+  });
+</script>

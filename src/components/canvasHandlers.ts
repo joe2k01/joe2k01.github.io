@@ -1,6 +1,5 @@
 import { ContactWebGL } from "./contactWebgl";
 import { HeroWebGL } from "./heroWebgl";
-// import { ContactWebGL } from "./contactWebgl";
 
 const hero = new HeroWebGL();
 const contact = new ContactWebGL();
