@@ -66,7 +66,7 @@ export class ContactWebGL extends WebGLAbstract {
 
     this.canvas.addEventListener("contactContentLoad", () => {
       if (font && matcap) {
-        const textGeometry = new TextGeometry("joe2k01dev@gmail.com", {
+        const textGeometry = new TextGeometry("giuseppe@barillari.me", {
           font,
           size: 0.5,
           height: 0.2,
