@@ -1,0 +1,61 @@
+---
+interface Props {
+  href: string;
+  label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<div class="button-h m-auto rounded-full group p-1 button-halo">
+  <div
+    class="rounded-full border-2 bg-linen-100 border-mantis-600 h-full aspect-square flex items-center justify-center"
+  >
+    <a
+      href={href}
+      class="text-mantis-500 flex"
+      target="_blank"
+      referrerpolicy="no-referrer"
+      aria-label={label}
+    >
+      <slot />
+    </a>
+  </div>
+</div>
+
+<style>
+  @property --from {
+    syntax: "<color>";
+    initial-value: theme("colors.curious-blue.500/.0");
+    inherits: false;
+  }
+
+  @property --to {
+    syntax: "<color>";
+    initial-value: theme("colors.careys-pink.500/.0");
+    inherits: false;
+  }
+
+  .button-halo {
+    background: linear-gradient(to top left, var(--from), var(--to));
+
+    transition-property: --from, --to;
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: 1000ms;
+  }
+
+  .button-halo:hover {
+    --from: theme("colors.curious-blue.500");
+    --to: theme("colors.careys-pink.500");
+  }
+
+  .button-h {
+    height: calc((100svh - 16px) / 12);
+  }
+
+  @media (min-width: 768px) {
+    .button-h {
+      height: calc((100svh - 16px) / 15);
+    }
+  }
+</style>
