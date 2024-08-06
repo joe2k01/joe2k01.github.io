@@ -7,44 +7,15 @@ import Button from "../components/Button.astro";
 import GitHub from "../components/GitHub.astro";
 import Linkedin from "../components/Linkedin.astro";
 import GMail from "../components/GMail.astro";
+import Old from "../components/Old.astro";
+import Welcome from "../components/Welcome.astro";
 ---
 
 <Layout title="Giuseppe Barillari">
-  <div
-    class="grid w-full h-full relative z-10 grid-cols-1 grid-rows-12 md:grid-rows-[repeat(15,_minmax(0,_1fr))]"
-  >
-    <div class="w-full m-auto row-span-10 md:row-span-12">
-      <Head className="w-3/4 md:w-1/2 xl:w-1/3 m-auto" />
-      <h1
-        class="text-center text-mantis-500 m-auto text-lg sm:text-3xl 2xl:text-5xl p-2 italic header"
-      >
-        Full-Stack Software Engineer
-      </h1>
-    </div>
-    <div class="mx-auto grid grid-cols-4 w-full md:w-3/4 xl:w-1/2 header text-xl md:text-2xl 3xl:text-4xl">
-      <Button
-        href="https://linkedin.com/in/giuseppe-barillari"
-        label="Giuseppe's LinkedIn profile."><Linkedin /></Button
-      >
-      <Button
-        href="mailto:giuseppe@barillari.me"
-        label="Send e-mail to Giuseppe. Address: giuseppe@barillari.me."
-        ><GMail />
-      </Button>
-      <Button
-        href="https://github.com/joe2k01"
-        label="Giuseppe's GitHub profile."
-        ><GitHub />
-      </Button>
-      <Button
-        href="/Giuseppe_Barillari_CV.pdf"
-        label="Giuseppe's Curriculum Vitae.">CV</Button
-      >
-    </div>
-  </div>
+  <main class="bg-zinc-950">
+    <Welcome />
+  </main>
 </Layout>
-
-<script></script>
 
 <style>
   .header {

@@ -1,0 +1,26 @@
+---
+import Button from "./Button.astro";
+import GitHub from "./GitHub.astro";
+import GMail from "./GMail.astro";
+import Linkedin from "./Linkedin.astro";
+---
+
+<div
+  class="mx-auto grid grid-cols-4 w-full md:w-3/4 xl:w-1/2 header text-xl md:text-2xl 3xl:text-4xl"
+>
+  <Button
+    href="https://linkedin.com/in/giuseppe-barillari"
+    label="Giuseppe's LinkedIn profile."><Linkedin /></Button
+  >
+  <Button
+    href="mailto:giuseppe@barillari.me"
+    label="Send e-mail to Giuseppe. Address: giuseppe@barillari.me."
+    ><GMail />
+  </Button>
+  <Button href="https://github.com/joe2k01" label="Giuseppe's GitHub profile."
+    ><GitHub />
+  </Button>
+  <Button href="/Giuseppe_Barillari_CV.pdf" label="Giuseppe's Curriculum Vitae."
+    >CV</Button
+  >
+</div>

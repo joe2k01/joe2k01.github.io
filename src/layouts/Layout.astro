@@ -10,74 +10,22 @@ const { title } = Astro.props;
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Giuseppe Barillari is a FullStack Software Engineer based in Reading, UK." />
+    <meta
+      name="description"
+      content="Giuseppe Barillari is a FullStack Software Engineer based in Reading, UK."
+    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="border-8 border-load box-border font-['Josefine_Sans_Variable'] font-bold">
-    <main class="rounded-lg bg-linen-100 main-h relative">
-      <slot />
-      <div class="main-bg fixed top-0 left-0 right-0 bottom-0 z-0"></div>
-    </main>
+  <body>
+    <slot />
   </body>
   <style is:global>
     :root {
       --load-time: 2s;
       --load-half-time: 1s;
-    }
-  </style>
-
-  <style>
-    @property --accent-colour {
-      syntax: "<color>";
-      initial-value: theme("colors.linen.100");
-      inherits: false;
-    }
-
-    .border-load {
-      --accent-colour: theme("colors.linen.100");
-      background-color: var(--accent-colour);
-      border-color: var(--accent-colour);
-      animation: load-accent var(--load-half-time) ease-in-out
-        var(--load-half-time) 1 forwards;
-    }
-
-    @keyframes load-accent {
-      from {
-        --accent-colour: theme("colors.linen.100");
-      }
-      to {
-        --accent-colour: theme("colors.careys-pink.600");
-      }
-    }
-
-    .main-h {
-      height: calc(100svh - 16px);
-      overflow-y: scroll;
-
-      -ms-overflow-style: none;
-      scrollbar-width: 0px;
-    }
-
-    .main-h::-webkit-scrollbar {
-      display: none;
-    }
-
-    .main-bg {
-      --conic-step: theme("colors.transparent");
-      background: theme("colors.linen.100")
-        conic-gradient(
-          from 180deg,
-          theme("colors.transparent"),
-          var(--accent-colour),
-          theme("colors.transparent")
-        );
-      opacity: 0.3;
-
-      animation: load-accent var(--load-time) ease-in-out var(--load-half-time)
-        1 forwards;
     }
   </style>
 </html>
