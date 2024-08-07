@@ -1,0 +1,71 @@
+---
+
+---
+
+<div class="slanted-parent" id="slanted-parent">
+  <div class="slanted" id="slanted">
+    <slot />
+  </div>
+</div>
+
+<script>
+  const welcome = document.getElementById("welcome");
+  const slantedParent = document.getElementById("slanted-parent");
+  const slanted = document.getElementById("slanted");
+
+  function handleScroll() {
+    const mobile = document.body.clientWidth < 768;
+
+    if (!welcome || !slantedParent || !slanted) {
+      throw new Error(
+        "Can't grab the thingis I need to make silly animations :(((("
+      );
+    }
+
+    const scroll = Math.min(
+      Math.max(window.scrollY / welcome.clientHeight, 0),
+      1
+    );
+
+    if (mobile) {
+      welcome.style.opacity = (1 - scroll).toString(10);
+      slanted.style.opacity = scroll.toString(10);
+
+      welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
+      slanted.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
+
+      slantedParent.style.transform = "translateY(-100svh)";
+    } else {
+      welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px) rotate3d(-1, 0, 0, ${50 * scroll}deg) scale(${1 - scroll})`;
+      slanted.style.transform = `rotate3d(1, 0, 0, -${50 * (1 - scroll)}deg) scale(${0.5 + scroll / 2})`;
+
+      slanted.style.opacity = "1";
+      slantedParent.style.transform = "none";
+    }
+  }
+
+  document.addEventListener("scroll", handleScroll);
+</script>
+
+<style>
+  .slanted-parent {
+    overflow-x: hidden;
+    transform: translateY(-100svh);
+    perspective: 100svh;
+  }
+
+  .slanted {
+    will-change: transform;
+    opacity: 0;
+  }
+
+  @media (min-width: 768px) {
+    .slanted-parent {
+      transform: none;
+    }
+
+    .slanted {
+      opacity: 1;
+    }
+  }
+</style>
