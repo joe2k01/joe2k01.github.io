@@ -3,6 +3,9 @@ export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
     extend: {
+      fontFamily: {
+        josefin: ['"Josefin Sans Variable"', "sans-serif"],
+      },
       screens: {
         "3xl": "2000px",
       },

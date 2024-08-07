@@ -1,9 +1,14 @@
 ---
+interface Props {
+  bg?: string;
+  text?: string;
+}
 
+const { bg = "bg-zinc-950", text = "text-zinc-50" } = Astro.props;
 ---
 
-<div class="slanted-parent" id="slanted-parent">
-  <div class="slanted" id="slanted">
+<div class="slanted-parent flex flex-col contain-paint" id="slanted-parent">
+  <div class={`slanted ${bg} ${text} rounded-t-lg`} id="slanted">
     <slot />
   </div>
 </div>
@@ -27,21 +32,21 @@
       1
     );
 
-    if (mobile) {
-      welcome.style.opacity = (1 - scroll).toString(10);
-      slanted.style.opacity = scroll.toString(10);
+    // if (mobile) {
+    //   welcome.style.opacity = (1 - scroll).toString(10);
+    //   slanted.style.opacity = scroll.toString(10);
 
-      welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
-      slanted.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
+    //   welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
+    //   slanted.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
 
-      slantedParent.style.transform = "translateY(-100svh)";
-    } else {
+    //   slantedParent.style.transform = "translateY(-100svh)";
+    // } else {
       welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px) rotate3d(-1, 0, 0, ${50 * scroll}deg) scale(${1 - scroll})`;
       slanted.style.transform = `rotate3d(1, 0, 0, -${50 * (1 - scroll)}deg) scale(${0.5 + scroll / 2})`;
 
       slanted.style.opacity = "1";
       slantedParent.style.transform = "none";
-    }
+    // }
   }
 
   document.addEventListener("scroll", handleScroll);
@@ -49,7 +54,6 @@
 
 <style>
   .slanted-parent {
-    overflow-x: hidden;
     transform: translateY(-100svh);
     perspective: 100svh;
   }

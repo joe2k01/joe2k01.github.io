@@ -1,0 +1,31 @@
+---
+import Project from "./Project.astro";
+import Title from "./Title.astro";
+---
+
+<div class="mt-10 px-2 md:px-4 font-josefin min-h-screen">
+  <Title title="Past projects" />
+  <ul class="w-full flex flex-col mt-10 md:mt-20">
+    <Project
+      title="ManyCore Visualiser"
+      description="A many-core system visualiser written in Rust and React. Accepts many-core system simulations as input, producing customisable vector and raster images as output."
+      link="https://manycore.barillari.me"
+    >
+      <img src="/many.webp" class="w-full h-full object-cover rounded-lg" />
+    </Project>
+    <Project
+      title="Nouse"
+      description="Nouse is the oldest student society at the University of York and one of the most acclaimed student newspapers in the country. Design and development of their website with database restructuring from the ground up."
+      link="https://nouse.co.uk"
+    >
+      <img src="/nouse.webp" class="w-full h-full object-cover rounded-lg" />
+    </Project>
+    <Project
+      title="York Engineering Society (YES)"
+      description="YES is the University of York's engineering society. Design and development of their website to include a built-in Content Management System for committee members."
+      link="https://york.engineering"
+    >
+      <img src="/yes.webp" class="w-full h-full object-cover rounded-lg" />
+    </Project>
+  </ul>
+</div>

@@ -1,0 +1,74 @@
+---
+import Head from "./Head.astro";
+---
+
+<header
+  class="w-full h-20 sticky top-0 bg-zinc-950 rounded-t-lg overflow-clip z-50"
+>
+  <div class="w-full h-full pb-1 relative">
+    <div
+      class="w-full h-full flex bg-zinc-950 flex-row items-center justify-between z-10"
+    >
+      <button
+        class="h-5/6 aspect-[209/100] px-2 hover:cursor-pointer"
+        id="name"
+      >
+        <Head hidePaint />
+      </button>
+      <button>
+        <div class="h-full aspect-square bg-violet-500"></div>
+      </button>
+    </div>
+    <div
+      class="absolute w-full h-full bg-gradient-to-r from-geraldine-500 to-carrot-orange-500 transition-opacity duration-1000 ease-in-out bg-line"
+    >
+    </div>
+  </div>
+</header>
+
+<style>
+  .bg-line {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  const header = document.querySelector("header");
+
+  if (!header) {
+    throw new Error("No header for animation :((");
+  }
+
+  function observerCallback(entries: IntersectionObserverEntry[]) {
+    const h = entries[0];
+    console.log(h.isIntersecting);
+
+    if (h.isIntersecting) {
+      h.target.classList.remove("rounded-t-lg");
+      const navParent = h.target.querySelector(".bg-line") as HTMLElement;
+      if (navParent) navParent.style.opacity = "1";
+    } else {
+      h.target.classList.add("rounded-t-lg");
+      const navParent = h.target.querySelector(".bg-line") as HTMLElement;
+      if (navParent) navParent.style.opacity = "0";
+    }
+  }
+
+  const observer = new IntersectionObserver(observerCallback, {
+    rootMargin: "0px 0px -100% 0px",
+  });
+
+  observer.observe(header);
+
+  const name = document.getElementById("name");
+
+  function scrollTop() {
+    window.scrollTo({
+      left: 0,
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  name?.addEventListener("click", scrollTop);
+</script>

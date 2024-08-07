@@ -1,0 +1,29 @@
+---
+type CustomBorder = {
+  class: string;
+};
+
+interface Props {
+  id?: string;
+  borderClass?: CustomBorder;
+}
+
+const { id, borderClass } = Astro.props;
+console.log(borderClass)
+---
+
+<div
+  class={`border-8 box-border fs ${borderClass ? borderClass.class : "border-geraldine-500"}`}
+  id={id}
+>
+  <div class="w-full h-full rounded-lg flex flex-col relative bg-zinc-950">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .fs {
+    height: 100svh;
+    will-change: transform;
+  }
+</style>

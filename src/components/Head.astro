@@ -3,9 +3,10 @@ interface Props {
   width?: number | string;
   height?: number | string;
   className?: string;
+  hidePaint?: boolean;
 }
 
-const { width, height, className } = Astro.props;
+const { width, height, className, hidePaint } = Astro.props;
 ---
 
 <style>
@@ -13,7 +14,8 @@ const { width, height, className } = Astro.props;
     stroke-dasharray: 384;
     stroke-dashoffset: 384;
 
-    animation: paint var(--load-half-time) ease-in-out var(--load-half-time) 1 forwards;
+    animation: paint var(--load-half-time) ease-in-out var(--load-half-time) 1
+      forwards;
   }
 
   @keyframes paint {
@@ -32,7 +34,7 @@ const { width, height, className } = Astro.props;
   xmlns="http://www.w3.org/2000/svg"
 >
   <path
-    class="paint"
+    class={hidePaint ? "hidden" : "paint"}
     d="M8.50001 41.5C8.50001 41.5 3.56526 10.1128 17 7.5C31.0745 4.76279 21.285 35.3189 35 39.5C52.3058 44.7757 50.5499 9.76176 68.5 7.5C94.8338 4.18186 31.1165 46.7669 43 70.5C55.8419 96.147 92.6007 99.5215 115.5 82.25C145 60 202 50.5 202 50.5"
     stroke="url(#paint0_linear_14_19)"
     stroke-width="14"
