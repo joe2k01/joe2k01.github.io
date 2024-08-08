@@ -41,7 +41,6 @@ import Head from "./Head.astro";
 
   function observerCallback(entries: IntersectionObserverEntry[]) {
     const h = entries[0];
-    console.log(h.isIntersecting);
 
     if (h.isIntersecting) {
       h.target.classList.remove("rounded-t-lg");

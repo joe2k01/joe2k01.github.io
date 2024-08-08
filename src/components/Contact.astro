@@ -1,0 +1,27 @@
+---
+import GitHub from "./GitHub.astro";
+import GradientLink from "./GradientLink.astro";
+import LinkedIn from "./LinkedIn.astro";
+import Title from "./Title.astro";
+---
+
+<div
+  class="mt-10 md:mt-20 px-2 md:px-4 font-josefin w-full box-border border-geraldine-500 border-b-8"
+>
+  <Title title="Contact" />
+  <div class="flex flex-col w-full mt-4 md:mt-8">
+    <p
+      class="text-center md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl relative my-4 md:my-10"
+    >
+      Email: <GradientLink href="mailto:giuseppe@barillari.me"
+        >giuseppe@barillari.me</GradientLink
+      >
+    </p>
+    <div
+      class="flex flex-row w-full mb-4 md:mb-10 p-2 md:p-4 gap-36 justify-center"
+    >
+      <GitHub />
+      <LinkedIn />
+    </div>
+  </div>
+</div>

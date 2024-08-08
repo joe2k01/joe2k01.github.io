@@ -5,6 +5,7 @@ export default {
     extend: {
       fontFamily: {
         josefin: ['"Josefin Sans Variable"', "sans-serif"],
+        alice: ['"Alice"', "serif"],
       },
       screens: {
         "3xl": "2000px",

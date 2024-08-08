@@ -1,18 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "@fontsource-variable/josefin-sans";
-import "@fontsource/lobster/latin-400.css";
-import Head from "../components/Head.astro";
-import Button from "../components/Button.astro";
-import GitHub from "../components/GitHub.astro";
-import Linkedin from "../components/Linkedin.astro";
-import GMail from "../components/GMail.astro";
-import Old from "../components/Old.astro";
 import Welcome from "../components/Welcome.astro";
 import Slant from "../components/Slant.astro";
 import Nav from "../components/Nav.astro";
 import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout title="Giuseppe Barillari">
@@ -20,8 +14,11 @@ import Experience from "../components/Experience.astro";
     <Welcome />
     <Slant>
       <Nav />
-      <Experience />
-      <Projects />
+      <div class="min-h-[50svh]">
+        <Experience />
+        <Projects />
+      </div>
+      <Contact />
     </Slant>
   </main>
 </Layout>

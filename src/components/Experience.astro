@@ -1,20 +1,15 @@
 ---
+import GradientLink from "./GradientLink.astro";
 import Title from "./Title.astro";
 ---
 
-<div class="mt-10 px-2 md:px-4 font-josefin">
+<div class="mt-10 md:mt-20 px-2 md:px-4 font-josefin">
   <Title title="Experience" />
   <p
-    class="md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl mt-2 md:mt-4 relative"
+    class="md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl mt-4 md:mt-8"
   >
-    Please see <a
-      class="underline text-transparent bg-clip-text bg-gradient-to-r from-geraldine-500 to-carrot-orange-500 relative"
-      href="/Giuseppe_Barillari_CV.pdf"
-      target="_blank"
-      referrerpolicy="no-referrer"
-      >my curriculum vitae<span
-        class="absolute w-full h-1 bg-gradient-to-r from-geraldine-500 to-carrot-orange-500 -bottom-1 left-0"
-      ></span></a
+    Please see <GradientLink href="/Giuseppe_Barillari_CV.pdf"
+      >my curriculum vitae</GradientLink
     > for an up-to-date snapshot of my professional experience.
   </p>
 </div>

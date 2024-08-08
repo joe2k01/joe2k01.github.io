@@ -7,7 +7,7 @@ interface Props {
 const { href, label } = Astro.props;
 ---
 
-<div class="button-h m-auto rounded-full group p-1 button-halo">
+<div class="w-14 sm:w-16 md:w-20 lg:w-24 xl:w-28 2xl:w-32 rounded-full group p-1 button-halo">
   <div
     class="rounded-full border-2 bg-linen-100 border-mantis-600 h-full aspect-square flex items-center justify-center"
   >
@@ -47,15 +47,5 @@ const { href, label } = Astro.props;
   .button-halo:hover {
     --from: theme("colors.geraldine.500");
     --to: theme("colors.carrot-orange.500");
-  }
-
-  .button-h {
-    height: calc((100svh - 16px) / 12);
-  }
-
-  @media (min-width: 768px) {
-    .button-h {
-      height: calc((100svh - 16px) / 15);
-    }
   }
 </style>
