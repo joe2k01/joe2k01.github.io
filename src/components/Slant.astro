@@ -91,7 +91,7 @@ const { bg = "bg-zinc-950", text = "text-zinc-50" } = Astro.props;
   }
 
   // Handles scroll event
-  function handleScroll(ev: Event) {
+  function handleScroll() {
     if (!welcome || !slantedParent || !slanted) {
       throw new Error(
         "Can't grab the thingis I need to make silly animations :(((("
