@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.9.1",
     "@astrojs/tailwind": "^5.1.0",
+    "@astrolib/seo": "^1.0.0-beta.5",
     "@fontsource-variable/josefin-sans": "^5.0.21",
     "@fontsource/alice": "^5.0.13",
     "@fontsource/lobster": "^5.0.20",

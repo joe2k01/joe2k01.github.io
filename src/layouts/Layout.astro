@@ -1,28 +1,51 @@
 ---
+import { AstroSeo } from "@astrolib/seo";
+
 interface Props {
   title: string;
+  description: string;
 }
 
-const { title } = Astro.props;
+const { title, description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="description"
-      content="Giuseppe Barillari is a FullStack Software Engineer based in Reading, UK."
-    />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+
+    <AstroSeo
+      title={title}
+      description={description}
+      canonical="https://barillari.me/"
+      twitter={{ cardType: "summary_large_image" }}
+      openGraph={{
+        title,
+        description,
+        images: [
+          {
+            url: "https://barillari.me/logo.png",
+            height: 245,
+            width: 512,
+            type: "image/png",
+          },
+          {
+            url: "https://barillari.me/logo_lg.png",
+            height: 490,
+            width: 1024,
+            type: "image/png",
+          },
+        ],
+      }}
+    />
   </head>
+
   <body>
     <slot />
-  </body>
-  <style is:global>
+  </body><style is:global>
     :root {
       --load-time: 2s;
       --load-half-time: 1s;
