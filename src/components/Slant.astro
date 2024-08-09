@@ -7,46 +7,120 @@ interface Props {
 const { bg = "bg-zinc-950", text = "text-zinc-50" } = Astro.props;
 ---
 
-<div class="slanted-parent flex flex-col contain-paint" id="slanted-parent">
+<div
+  class="slanted-parent flex flex-col contain-paint relative z-30"
+  id="slanted-parent"
+>
   <div class={`slanted ${bg} ${text} rounded-t-lg`} id="slanted">
     <slot />
   </div>
 </div>
 
 <script>
+  // Describes scroll animation direction
+  enum ScrollDirection {
+    Down,
+    Up,
+  }
+
+  // DOM Elements
   const welcome = document.getElementById("welcome");
   const slantedParent = document.getElementById("slanted-parent");
   const slanted = document.getElementById("slanted");
 
-  function handleScroll() {
-    const mobile = document.body.clientWidth < 768;
+  // Is scrolling animation playing?
+  let scrolling = false;
+  // Scorlling animation direction
+  let direction = ScrollDirection.Down;
+  // Animation duration
+  const animationTime = 2000;
+  // Previous animation timestamp
+  let prevTime = 0;
 
+  // Animation smoothing function
+  function bezierCurve(delta: number) {
+    return delta * delta * (3 - 2 * delta);
+  }
+
+  // Handles scroll animation
+  function animateScroll(time: DOMHighResTimeStamp) {
+    if (!welcome || !slantedParent || !slanted) {
+      scrolling = false;
+      throw new Error(
+        "Can't grab the thingis I need to make silly animations :(((("
+      );
+    }
+
+    const delta = (time - prevTime) / animationTime;
+
+    // Scroll percentage
+    // Clamp scroll to 1
+    let scroll = 1;
+    if (delta < 1) {
+      // Calculate smoothing if animation has not finished
+      scroll = bezierCurve(delta);
+    } else {
+      // Stop animation if done scrolling
+      scrolling = false;
+    }
+
+    // Adjust scroll for direction
+    if (direction == ScrollDirection.Up) {
+      scroll = 1 - scroll;
+    }
+
+    // Apply transforms
+    welcome.style.transform = `translateY(${welcome.offsetHeight * scroll}px) rotate3d(-1, 0, 0, ${50 * scroll}deg) scale(${1 - scroll})`;
+    slanted.style.transform = `rotate3d(1, 0, 0, -${50 * (1 - scroll)}deg) scale(${0.5 + scroll / 2})`;
+    // Scroll the page, in pixels from point where animation started
+    window.scroll({ top: welcome.offsetHeight * scroll });
+
+    if (scrolling) {
+      // Next frame
+      requestAnimationFrame(animateScroll);
+    } else {
+      // Gently adjust scrolling offset by scrolling to absolute required offset
+      window.scrollTo({
+        top: direction == ScrollDirection.Up ? 0 : welcome.offsetHeight,
+        behavior: "smooth",
+      });
+
+      // Allow user scrolling
+      document.body.style.overflowY = "unset";
+    }
+  }
+
+  // Handles scroll event
+  function handleScroll(ev: Event) {
     if (!welcome || !slantedParent || !slanted) {
       throw new Error(
         "Can't grab the thingis I need to make silly animations :(((("
       );
     }
 
+    // Calculate scrolling offset w.r.t. welcome element
     const scroll = Math.min(
       Math.max(window.scrollY / welcome.clientHeight, 0),
       1
     );
 
-    // if (mobile) {
-    //   welcome.style.opacity = (1 - scroll).toString(10);
-    //   slanted.style.opacity = scroll.toString(10);
+    // If we are in the vicinity of the welcome element
+    if (scroll < 1) {
+      // And we are not already in a scrolling animation
+      if (!scrolling) {
+        scrolling = true;
+        // Block user scrolling
+        document.body.style.overflowY = "hidden";
+        // Set previous animation timestamp to current time
+        prevTime = performance.now();
 
-    //   welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
-    //   slanted.style.transform = `translateY(${welcome.clientHeight * scroll}px)`;
+        // Detect scrolling direction
+        direction = scroll >= 0.5 ? ScrollDirection.Up : ScrollDirection.Down;
 
-    //   slantedParent.style.transform = "translateY(-100svh)";
-    // } else {
-      welcome.style.transform = `translateY(${welcome.clientHeight * scroll}px) rotate3d(-1, 0, 0, ${50 * scroll}deg) scale(${1 - scroll})`;
-      slanted.style.transform = `rotate3d(1, 0, 0, -${50 * (1 - scroll)}deg) scale(${0.5 + scroll / 2})`;
-
-      slanted.style.opacity = "1";
-      slantedParent.style.transform = "none";
-    // }
+        // Start animation
+        requestAnimationFrame(animateScroll);
+      }
+    }
   }
 
   document.addEventListener("scroll", handleScroll);
@@ -54,22 +128,10 @@ const { bg = "bg-zinc-950", text = "text-zinc-50" } = Astro.props;
 
 <style>
   .slanted-parent {
-    transform: translateY(-100svh);
     perspective: 100svh;
   }
 
   .slanted {
     will-change: transform;
-    opacity: 0;
-  }
-
-  @media (min-width: 768px) {
-    .slanted-parent {
-      transform: none;
-    }
-
-    .slanted {
-      opacity: 1;
-    }
   }
 </style>

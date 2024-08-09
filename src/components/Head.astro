@@ -23,6 +23,13 @@ const { width, height, className, hidePaint } = Astro.props;
       stroke-dashoffset: 0;
     }
   }
+
+  @media (prefers-reduced-motion) {
+    .paint {
+      animation-play-state: paused !important;
+      stroke-dashoffset: 0;
+    }
+  }
 </style>
 
 <svg

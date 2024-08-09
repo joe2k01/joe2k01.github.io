@@ -10,8 +10,30 @@ import Contact from "../components/Contact.astro";
 ---
 
 <Layout title="Giuseppe Barillari">
-  <main class="bg-geraldine-500">
+  <main class="bg-geraldine-500 relative z-0 contain-paint">
     <Welcome />
+    <div class="fixed left-0 top-[100svh] -translate-y-1/2 z-20">
+      <span
+        class="text-5xl xl:text-7xl 3xl:text-9xl marquee transition-opacity opacity-0 ease-in-out duration-1000 text-zinc-50 font-bold"
+      >
+        <ul class="marquee-block">
+          <li>Frontend</li>
+          <li>&laquo;</li>
+          <li>Backend</li>
+          <li>&laquo;</li>
+          <li>FullStack</li>
+          <li>&laquo;</li>
+        </ul>
+        <ul class="marquee-block" aria-hidden="true">
+          <li>Frontend</li>
+          <li>&laquo;</li>
+          <li>Backend</li>
+          <li>&laquo;</li>
+          <li>FullStack</li>
+          <li>&laquo;</li>
+        </ul>
+      </span>
+    </div>
     <Slant>
       <Nav />
       <div class="min-h-[50svh]">
@@ -23,8 +45,68 @@ import Contact from "../components/Contact.astro";
   </main>
 </Layout>
 
+<script>
+  const welcome = document.getElementById("welcome");
+  let triggered = false;
+
+  welcome?.addEventListener("animationstart", (_) => {
+    // The event bubbles so all children of welcome will trigger
+    // this handler.
+    // We only need to remove the class once.
+    if (!triggered) {
+      document.querySelector(".marquee")?.classList.remove("opacity-0");
+      triggered = true;
+    }
+  });
+</script>
+
 <style>
   main {
     perspective: 100svh;
+  }
+
+  .marquee {
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    user-select: none;
+    gap: 1rem;
+
+    text-shadow:
+      -2px 0 theme("colors.zinc.950"),
+      0 2px theme("colors.zinc.950"),
+      2px 0 theme("colors.zinc.950"),
+      0 -2px theme("colors.zinc.950");
+  }
+
+  .marquee-block {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-around;
+    min-width: 100vw;
+    gap: 1rem;
+
+    animation: marquee 7s linear infinite;
+  }
+
+  @media (min-width: 768px) {
+    .marquee-block {
+      animation-duration: 13s;
+    }
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(calc(-100vw - 1rem));
+    }
+  }
+
+  @media (prefers-reduced-motion) {
+    .marquee-block {
+      animation-play-state: paused !important;
+    }
   }
 </style>
