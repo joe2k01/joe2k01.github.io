@@ -26,8 +26,7 @@ import Head from "./Head.astro";
     --accent-colour: theme("colors.zinc.950");
     background-color: var(--accent-colour);
     border-color: var(--accent-colour);
-    animation: load-accent var(--load-half-time) ease-in-out
-      var(--load-half-time) 1 forwards;
+    animation: load-accent var(--duration) ease-in-out var(--delay) 1 forwards;
   }
 
   @keyframes load-accent {
@@ -50,14 +49,13 @@ import Head from "./Head.astro";
       );
     opacity: 0.2;
 
-    animation: load-accent var(--load-time) ease-in-out var(--load-half-time) 1
-      forwards;
+    animation: load-accent calc(var(--duration) * 1.5) ease-in-out var(--delay)
+      1 forwards;
   }
 
   .appear {
     opacity: 0;
-    animation: appear var(--load-half-time) ease-in-out var(--load-half-time) 1
-      forwards;
+    animation: appear var(--duration) ease-in-out var(--delay) 1 forwards;
   }
 
   @keyframes appear {
